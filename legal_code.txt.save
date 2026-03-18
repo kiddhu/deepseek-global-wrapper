@@ -1,0 +1,280 @@
+20:48:09.865Z	[SERVER]	Initializing development environment for git-connected project...
+
+20:48:10.621Z	[SERVER]	Installing dependencies...
+
+20:48:11.176Z	[SERVER]	Installing dependencies with pnpm@10.30.3...
+
+20:48:11.565Z	[SERVER]	Lockfile is up to date, resolution step is skipped
+
+20:48:11.588Z	[SERVER]	Progress: resolved 1, reused 0, downloaded 0, added 0
+
+20:48:11.613Z	[SERVER]	Packages: +187
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+20:48:12.590Z	[SERVER]	Progress: resolved 187, reused 108, downloaded 0, added 0
+
+20:48:13.591Z	[SERVER]	Progress: resolved 187, reused 167, downloaded 20, added 76
+
+20:48:14.591Z	[SERVER]	Progress: resolved 187, reused 167, downloaded 20, added 127
+
+20:48:14.785Z	[SERVER]	Progress: resolved 187, reused 167, downloaded 20, added 187, done
+
+20:48:14.938Z	[SERVER]	
+dependencies:
++ @hookform/resolvers 3.10.0
++ @radix-ui/react-accordion 1.2.12
++ @radix-ui/react-alert-dialog 1.1.15
++ @radix-ui/react-aspect-ratio 1.1.8
++ @radix-ui/react-avatar 1.1.11
++ @radix-ui/react-checkbox 1.3.3
++ @radix-ui/react-collapsible 1.1.12
++ @radix-ui/react-context-menu 2.2.16
++ @radix-ui/react-dialog 1.1.15
++ @radix-ui/react-dropdown-menu 2.1.16
++ @radix-ui/react-hover-card 1.1.15
++ @radix-ui/react-label 2.1.8
++ @radix-ui/react-menubar 1.1.16
++ @radix-ui/react-navigation-menu 1.2.14
++ @radix-ui/react-popover 1.1.15
++ @radix-ui/react-progress 1.1.8
++ @radix-ui/react-radio-group 1.3.8
++ @radix-ui/react-scroll-area 1.2.10
++ @radix-ui/react-select 2.2.6
++ @radix-ui/react-separator 1.1.8
++ @radix-ui/react-slider 1.3.6
++ @radix-ui/react-slot 1.2.4
++ @radix-ui/react-switch 1.2.6
++ @radix-ui/react-tabs 1.1.13
++ @radix-ui/react-toast 1.2.15
++ @radix-ui/react-toggle 1.1.10
++ @radix-ui/react-toggle-group 1.1.11
++ @radix-ui/react-tooltip 1.2.8
++ @vercel/analytics 1.6.1
++ autoprefixer 10.4.27
++ class-variance-authority 0.7.1
++ clsx 2.1.1
++ cmdk 1.1.1
++ date-fns 4.1.0
++ embla-carousel-react 8.6.0
++ input-otp 1.4.2
++ lucide-react 0.564.0
++ next 16.1.6
++ next-themes 0.4.6
++ react 19.2.4
++ react-day-picker 9.13.2
++ react-dom 19.2.4
++ react-hook-form 7.71.2
++ react-resizable-panels 2.1.9
++ recharts 2.15.0
++ sonner 1.7.4
++ tailwind-merge 3.5.0
++ vaul 1.1.2
++ zod 3.25.76
+
+devDependencies:
++ @tailwindcss/postcss 4.2.1
++ @types/node 22.19.15
++ @types/react 19.2.14
++ @types/react-dom 19.2.3
++ postcss 8.5.8
++ tailwindcss 4.2.1
++ tw-animate-css 1.3.3
++ typescript 5.7.3
+
+
+20:48:14.952Z	[SERVER]	╭ Warning ─────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│   Ignored build scripts: sharp@0.34.5.                                       │
+│   Run "pnpm approve-builds" to pick which dependencies should be allowed     │
+│   to run scripts.                                                            │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+20:48:14.956Z	[SERVER]	Done in 3.7s using pnpm v10.30.3
+
+20:48:16.208Z	[SERVER]	
+> my-project@0.1.0 dev /vercel/share/v0-next-shadcn
+> next dev
+
+
+20:48:16.740Z	[SERVER]	▲ Next.js 16.1.6 (Turbopack)
+
+20:48:16.741Z	[SERVER]	- Local:         http://localhost:3000
+
+20:48:16.741Z	[SERVER]	- Network:       http://192.168.6.126:3000
+
+20:48:16.741Z	[SERVER]	- Environments: .env.development.local
+
+20:48:16.741Z	[SERVER]	- Experiments (use with caution):
+
+20:48:16.741Z	[SERVER]	  · browserDebugInfoInTerminal
+
+20:48:16.741Z	[SERVER]	  · serverActions
+
+20:48:16.741Z	[SERVER]	  ✓ transitionIndicator
+
+20:48:16.741Z	[SERVER]	
+
+20:48:16.742Z	[SERVER]	✓ Starting...
+
+20:48:16.790Z	[SERVER]	Attention: Next.js now collects completely anonymous telemetry regarding usage.
+
+20:48:16.790Z	[SERVER]	This information is used to shape Next.js' roadmap and prioritize features.
+You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+https://nextjs.org/telemetry
+
+
+20:48:17.280Z	[SERVER]	
+
+20:48:17.280Z	[SERVER]	  We detected TypeScript in your project and reconfigured your tsconfig.json file for you.
+  The following suggested values were added to your tsconfig.json. These values can be changed to fit your project's needs:
+
+  	- include was updated to add '.next/dev/types/**/*.ts'
+
+
+20:48:17.400Z	[SERVER]	✓ Ready in 695ms
+
+20:51:14.084Z	[SERVER]	 GET / 200 in 3.4s (compile: 3.2s, render: 223ms)
+
+20:51:20.388Z	[SERVER]	[browser] [Vercel Web Analytics] Debug mode is enabled by default in development. No requests will be sent to the server. (https://va.vercel-scripts.com/v1/script.debug.js:1:615)
+
+20:51:20.391Z	[SERVER]	[browser] [Vercel Web Analytics] Running queued event pageview { path: '/', route: '/' } (https://va.vercel-scripts.com/v1/script.debug.js:1:615)
+
+20:51:20.392Z	[SERVER]	[browser] [Vercel Web Analytics] [view] https://vm-rl281ig8b8otu4mkbawnul.vusercontent.net/ {
+  dp: '/',
+  f: undefined,
+  o: 'https://vm-rl281ig8b8otu4mkbawnul.vusercontent.net/',
+  r: 'https://v0.app/',
+  sdkn: '@vercel/analytics/next',
+  sdkv: '1.6.1',
+  sv: '0.1.3',
+  ts: 1773233479231
+} /_vercel/insights/view (https://va.vercel-scripts.com/v1/script.debug.js:1:615)
+
+20:51:22.054Z	[SERVER]	 GET /icon-dark-32x32.png 404 in 517ms (compile: 439ms, render: 78ms)
+
+20:51:22.054Z	[SERVER]	 GET /icon-light-32x32.png 404 in 503ms (compile: 463ms, render: 40ms)
+
+20:53:40.393Z	[SERVER]	✓ Compiled in 195ms
+
+20:53:41.619Z	[SERVER]	 GET / 200 in 92ms (compile: 33ms, render: 59ms)
+
+20:53:43.847Z	[SERVER]	 GET / 200 in 31ms (compile: 3ms, render: 28ms)
+
+20:53:46.825Z	[SERVER]	 GET / 200 in 39ms (compile: 3ms, render: 36ms)
+
+20:53:47.691Z	[SERVER]	 GET / 200 in 30ms (compile: 3ms, render: 27ms)
+
+20:53:49.277Z	[SERVER]	 GET / 200 in 35ms (compile: 6ms, render: 29ms)
+
+20:53:49.951Z	[SERVER]	 GET / 200 in 41ms (compile: 3ms, render: 38ms)
+
+20:53:53.749Z	[SERVER]	 GET / 200 in 28ms (compile: 3ms, render: 25ms)
+
+20:54:11.534Z	[SERVER]	 GET /legal 200 in 406ms (compile: 324ms, render: 82ms)
+
+20:54:25.764Z	[SERVER]	[browser] [Vercel Web Analytics] Debug mode is enabled by default in development. No requests will be sent to the server. (https://va.vercel-scripts.com/v1/script.debug.js:1:615)
+[browser] [Vercel Web Analytics] Running queued event pageview { path: '/legal', route: '/legal' } (https://va.vercel-scripts.com/v1/script.debug.js:1:615)
+[browser] [Vercel Web Analytics] [view] https://vm-rl281ig8b8otu4mkbawnul.vusercontent.net/legal {
+  dp: '/legal',
+  f: undefined,
+  o: 'https://vm-rl281ig8b8otu4mkbawnul.vusercontent.net/legal',
+  sdkn: '@vercel/analytics/next',
+  sdkv: '1.6.1',
+  sv: '0.1.3',
+  ts: 1773233662282
+} /_vercel/insights/view (https://va.vercel-scripts.com/v1/script.debug.js:1:615)
+
+20:54:26.931Z	[SERVER]	 GET /icon-dark-32x32.png 404 in 99ms (compile: 13ms, render: 87ms)
+
+20:54:26.934Z	[SERVER]	 GET /icon-light-32x32.png 404 in 43ms (compile: 3ms, render: 40ms)
+
+21:27:36.137Z	[SERVER]	 GET / 200 in 69ms (compile: 3ms, render: 66ms)
+
+21:27:39.703Z	[SERVER]	[browser] [Vercel Web Analytics] Debug mode is enabled by default in development. No requests will be sent to the server. (https://va.vercel-scripts.com/v1/script.debug.js:1:615)
+
+21:27:39.703Z	[SERVER]	[browser] [Vercel Web Analytics] Running queued event pageview { path: '/', route: '/' } (https://va.vercel-scripts.com/v1/script.debug.js:1:615)
+
+21:27:39.704Z	[SERVER]	[browser] [Vercel Web Analytics] [view] https://vm-rl281ig8b8otu4mkbawnul.vusercontent.net/ {
+  dp: '/',
+  f: undefined,
+  o: 'https://vm-rl281ig8b8otu4mkbawnul.vusercontent.net/',
+  r: 'https://v0.app/',
+  sdkn: '@vercel/analytics/next',
+  sdkv: '1.6.1',
+  sv: '0.1.3',
+  ts: 1773235657515
+} /_vercel/insights/view (https://va.vercel-scripts.com/v1/script.debug.js:1:615)
+
+21:27:39.903Z	[SERVER]	 GET /icon-light-32x32.png 404 in 106ms (compile: 2ms, render: 103ms)
+
+21:27:39.905Z	[SERVER]	 GET /icon-dark-32x32.png 404 in 57ms (compile: 9ms, render: 48ms)
+
+21:29:29.231Z	[SERVER]	 GET / 200 in 53ms (compile: 1903µs, render: 51ms)
+
+21:29:29.692Z	[SERVER]	 GET / 200 in 45ms (compile: 2ms, render: 42ms)
+
+21:29:30.057Z	[SERVER]	 GET / 200 in 46ms (compile: 2ms, render: 44ms)
+
+21:29:34.765Z	[SERVER]	[browser] [Vercel Web Analytics] Debug mode is enabled by default in development. No requests will be sent to the server. (https://va.vercel-scripts.com/v1/script.debug.js:1:615)
+[browser] [Vercel Web Analytics] Running queued event pageview { path: '/', route: '/' } (https://va.vercel-scripts.com/v1/script.debug.js:1:615)
+[browser] [Vercel Web Analytics] [view] https://vm-rl281ig8b8otu4mkbawnul.vusercontent.net/ {
+  dp: '/',
+  f: undefined,
+  o: 'https://vm-rl281ig8b8otu4mkbawnul.vusercontent.net/',
+  r: 'https://v0.app/',
+  sdkn: '@vercel/analytics/next',
+  sdkv: '1.6.1',
+  sv: '0.1.3',
+  ts: 1773235772295
+} /_vercel/insights/view (https://va.vercel-scripts.com/v1/script.debug.js:1:615)
+
+21:29:35.182Z	[SERVER]	 GET /icon-dark-32x32.png 404 in 54ms (compile: 4ms, render: 50ms)
+
+21:29:35.183Z	[SERVER]	 GET /icon-light-32x32.png 404 in 29ms (compile: 5ms, render: 24ms)
+
+21:29:35.788Z	[SERVER]	[browser] [Vercel Web Analytics] Debug mode is enabled by default in development. No requests will be sent to the server. (https://va.vercel-scripts.com/v1/script.debug.js:1:615)
+
+21:29:35.788Z	[SERVER]	[browser] [Vercel Web Analytics] Running queued event pageview { path: '/', route: '/' } (https://va.vercel-scripts.com/v1/script.debug.js:1:615)
+
+21:29:35.789Z	[SERVER]	[browser] [Vercel Web Analytics] [view] https://vm-rl281ig8b8otu4mkbawnul.vusercontent.net/ {
+  dp: '/',
+  f: undefined,
+  o: 'https://vm-rl281ig8b8otu4mkbawnul.vusercontent.net/',
+  r: 'https://v0.app/',
+  sdkn: '@vercel/analytics/next',
+  sdkv: '1.6.1',
+  sv: '0.1.3',
+  ts: 1773235772779
+} /_vercel/insights/view (https://va.vercel-scripts.com/v1/script.debug.js:1:615)
+
+21:29:35.792Z	[SERVER]	[browser] [Vercel Web Analytics] Debug mode is enabled by default in development. No requests will be sent to the server. (https://va.vercel-scripts.com/v1/script.debug.js:1:615)
+[browser] [Vercel Web Analytics] Running queued event pageview { path: '/', route: '/' } (https://va.vercel-scripts.com/v1/script.debug.js:1:615)
+[browser] [Vercel Web Analytics] [view] https://vm-rl281ig8b8otu4mkbawnul.vusercontent.net/ {
+  dp: '/',
+  f: undefined,
+  o: 'https://vm-rl281ig8b8otu4mkbawnul.vusercontent.net/',
+  r: 'https://v0.app/',
+  sdkn: '@vercel/analytics/next',
+  sdkv: '1.6.1',
+  sv: '0.1.3',
+  ts: 1773235773318
+} /_vercel/insights/view (https://va.vercel-scripts.com/v1/script.debug.js:1:615)
+
+21:29:36.200Z	[SERVER]	 GET /icon-light-32x32.png 404 in 83ms (compile: 4ms, render: 80ms)
+
+21:29:36.202Z	[SERVER]	 GET /icon-dark-32x32.png 404 in 44ms (compile: 4ms, render: 39ms)
+
+21:29:37.307Z	[SERVER]	 GET /icon-dark-32x32.png 404 in 189ms (compile: 4ms, render: 186ms)
+
+21:29:37.318Z	[SERVER]	 GET /icon-light-32x32.png 404 in 133ms (compile: 10ms, render: 123ms)
+
+21:38:10.476Z	[SERVER]	 GET / 200 in 53ms (compile: 4ms, render: 49ms)
+
+21:38:26.562Z	[SERVER]	[browser] Download the React DevTools for a better development experience: https://react.dev/link/react-devtools
+
+21:38:29.801Z	[SERVER]	 GET /icon-light-32x32.png 404 in 38ms (compile: 5ms, render: 33ms)
+
+21:38:31.273Z	[SERVER]	 GET /icon-dark-32x32.png 404 in 35ms (compile: 3ms, render: 32ms)
+
+21:38:32.707Z	[SERVER]	 GET /icon-light-32x32.png 404 in 44ms (compile: 2ms, render: 42ms)

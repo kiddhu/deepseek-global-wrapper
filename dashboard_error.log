@@ -1,0 +1,45 @@
+nohup: ignoring input
+114.217.60.110 - - [17/Mar/2026 21:17:19] "GET / HTTP/1.1" 200 -
+204.76.203.30 - - [17/Mar/2026 21:18:53] code 404, message File not found
+204.76.203.30 - - [17/Mar/2026 21:18:53] "GET http://ip-api.com/json/ HTTP/1.1" 404 -
+121.237.36.27 - - [17/Mar/2026 21:20:51] "GET / HTTP/1.1" 200 -
+121.237.36.31 - - [17/Mar/2026 21:22:39] "GET / HTTP/1.1" 200 -
+----------------------------------------
+Exception occurred during processing of request from ('167.94.146.51', 27908)
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/socketserver.py", line 318, in _handle_request_noblock
+    self.process_request(request, client_address)
+  File "/usr/lib/python3.12/socketserver.py", line 349, in process_request
+    self.finish_request(request, client_address)
+  File "/usr/lib/python3.12/socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+  File "/usr/lib/python3.12/http/server.py", line 672, in __init__
+    super().__init__(*args, **kwargs)
+  File "/usr/lib/python3.12/socketserver.py", line 761, in __init__
+    self.handle()
+  File "/usr/lib/python3.12/http/server.py", line 436, in handle
+    self.handle_one_request()
+  File "/usr/lib/python3.12/http/server.py", line 404, in handle_one_request
+    self.raw_requestline = self.rfile.readline(65537)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/socket.py", line 707, in readinto
+    return self._sock.recv_into(b)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+ConnectionResetError: [Errno 104] Connection reset by peer
+----------------------------------------
+167.94.146.51 - - [17/Mar/2026 21:23:16] "GET / HTTP/1.1" 200 -
+167.94.146.51 - - [17/Mar/2026 21:23:20] code 400, message Bad request version ('À\\x14À')
+167.94.146.51 - - [17/Mar/2026 21:23:20] "\x16\x03\x01\x00î\x01\x00\x00ê\x03\x03$z\x82\x12wÆ©JÏB·\x99$KY\x07%\x05m£´Å»\x7f\x8fî-³r\x03Ñ¿ ¦Ê{ÛWt)y^©âí\x03Ç\x08¡\x9dåãNº\x83\x1e\x9f½\x97Þç\x81È$A\x00&Ì¨Ì©À/À0À+À,À\x13À\x09À\x14À" 400 -
+167.94.146.51 - - [17/Mar/2026 21:23:20] "GET / HTTP/1.1" 200 -
+167.94.146.51 - - [17/Mar/2026 21:23:20] code 505, message Invalid HTTP version (2.0)
+167.94.146.51 - - [17/Mar/2026 21:23:20] "PRI * HTTP/2.0" 505 -
+167.94.146.51 - - [17/Mar/2026 21:23:20] code 404, message File not found
+167.94.146.51 - - [17/Mar/2026 21:23:20] "GET /favicon.ico HTTP/1.1" 404 -
+167.94.146.51 - - [17/Mar/2026 21:23:24] code 400, message Bad request syntax ('\\x16\\x03\\x01\\x00î\\x01\\x00\\x00ê\\x03\\x03zQ\\x98Ê\\x08\\x13|\\x8f±')
+167.94.146.51 - - [17/Mar/2026 21:23:24] "\x16\x03\x01\x00î\x01\x00\x00ê\x03\x03zQ\x98Ê\x08\x13|\x8f±" 400 -
+167.94.146.51 - - [17/Mar/2026 21:23:25] code 404, message File not found
+167.94.146.51 - - [17/Mar/2026 21:23:25] "GET /robots.txt HTTP/1.1" 404 -
+121.237.36.31 - - [17/Mar/2026 21:26:02] code 404, message File not found
+121.237.36.31 - - [17/Mar/2026 21:26:02] "GET /favicon.ico HTTP/1.1" 404 -
+114.217.60.110 - - [17/Mar/2026 21:35:24] "GET / HTTP/1.1" 200 -
+118.163.198.6 - - [17/Mar/2026 21:39:51] "GET / HTTP/1.1" 200 -

@@ -1,0 +1,116 @@
+y: 'Courier New', monospace; font-size: 0.85em; border-radius: 6px; margin-top: 10px; border: 1px solid #1e293b; }}
+                    
+                    .manifest-box {{ width: 100%; height: 180px; background: #000; color: #cbd5e1; border: 1px solid #1e293b; border-radius: 6px; padding: 15px; font-family: monospace; font-size: 0.85em; resize: vertical; box-sizing: border-box; }}
+                </style>
+            </head>
+            <body>
+                <div class="container">
+                    <h1>
+                        <div>AION 实时指挥部 <span style="font-size: 0.4em; color:#64748b;">v3.0 Panopticon</span></div>
+                        <div style="font-size: 0.35em; color: #94a3b8; font-weight: normal;"><span class="status-dot"></span>系统在线 | {now}</div>
+                    </h1>
+
+                    <!-- 模块 1：业务增长监控 (Business Metrics) -->
+                    <div class="section-title">📊 业务增长监控 (需接入 One-API / Stripe)</div>
+                    <div class="grid-4">
+                        <div class="card">
+                            <div class="metric-title">今日新增注册 (Signups)</div>
+                            <div class="metric-value">-- <span class="metric-trend trend-up">接入中</span></div>
+                            <div class="pending-text">🟡 等待配置 One-API 数据库直连</div>
+                        </div>
+                        <div class="card">
+                            <div class="metric-title">活跃试用客户 (Trials)</div>
+                            <div class="metric-value">-- <span class="metric-trend trend-up">接入中</span></div>
+                            <div class="pending-text">🟡 等待配置额度消耗探针</div>
+                        </div>
+                        <div class="card">
+                            <div class="metric-title">今日预估利润 (MRR Pacing)</div>
+                            <div class="metric-value" style="color: #fbbf24;">$--</div>
+                            <div class="pending-text">🟡 等待 Stripe Webhook 联通</div>
+                        </div>
+                        <div class="card">
+                            <div class="metric-title">香港网关健康度</div>
+                            <div class="metric-value" style="color: #10b981;">100%</div>
+                            <div class="metric-title" style="margin-top: 8px; color: #10b981;">● Docker / One-API 运行正常</div>
+                        </div>
+                    </div>
+
+                    <!-- 模块 2：全网流量间谍 (Traffic Spy) -->
+                    <div class="section-title">🌐 全网流量间谍 (需接入 Cloudflare GraphQL)</div>
+                    <div class="grid-4">
+                        <div class="card">
+                            <div class="metric-title">今日独立访客 (UV)</div>
+                            <div class="metric-value">--</div>
+                            <div class="pending-text">🟡 等待 Cloudflare Token</div>
+                        </div>
+                        <div class="card">
+                            <div class="metric-title">今日页面点击 (PV)</div>
+                            <div class="metric-value">--</div>
+                            <div class="pending-text">🟡 等待 Cloudflare Token</div>
+                        </div>
+                        <div class="card" style="grid-column: span 2;">
+                            <div class="metric-title">SEO 护城河资产 (已上线)</div>
+                            <div class="grid-2" style="gap: 10px; margin-top: 15px;">
+                                <div>
+                                    <div style="font-size: 2em; font-weight: bold; color: #3b82f6;">{total_articles} <span style="font-size: 0.3em; color: #64748b;">篇</span></div>
+                                    <div style="font-size: 0.8em; color: #94a3b8;">累计 AI 极客文章</div>
+                                </div>
+                                <div>
+                                    <div style="font-size: 2em; font-weight: bold; color: #8b5cf6;">{total_matrices} <span style="font-size: 0.3em; color: #64748b;">个</span></div>
+                                    <div style="font-size: 0.8em; color: #94a3b8;">已寄生 GitHub 库</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 模块 3：前线自动化特工战况 (OpenClaw Agents) -->
+                    <div class="section-title">🤖 自动化特工战况 (Local Agents)</div>
+                    <div class="grid-2">
+                        <div class="card">
+                            <div class="metric-title" style="color: #10b981;">[Agent 01] Arxiv 论文收割与 pSEO 引擎</div>
+                            <div style="font-size: 0.8em; color: #94a3b8;">下次开火: 每天 06:00 (北京时间)</div>
+                            <div class="log-output">> {writer_log}</div>
+                        </div>
+                        <div class="card">
+                            <div class="metric-title" style="color: #3b82f6;">[Agent 02] GitHub 爆款项目截流矩阵</div>
+                            <div style="font-size: 0.8em; color: #94a3b8;">下次开火: 每天 12:00 (北京时间)</div>
+                            <div class="log-output">> {matrix_log}</div>
+                        </div>
+                    </div>
+
+                    <!-- 模块 4：灵魂锚点 (Manifest) -->
+                    <div class="section-title">🧠 AION 帝国全量技术宣言 (Handover Manifest)</div>
+                    <div class="card" style="padding: 10px;">
+                        <textarea class="manifest-box" readonly>
+Role Play: 你是全球顶级 AI 架构师与自动化专家。
+项目背景: SeekAPI.ai (跨境算力套利)
+核心品牌: AION (超级个体) | Slogan: "AION: The Era of the One."
+三大支柱: 【智算】(AI 士兵)、【生物】(长寿进化)、【财富】(算法套利)。
+
+1. 基础设施 (Infrastructure):
+- 指挥部 (HQ): 新加坡腾讯云 (43.153.221.23:8080)。
+- 前线 (Frontline): 香港野草云 (45.152.64.217:3000)，运行 One-API。
+- 路由层: Cloudflare Worker 接管 seekapi.ai/*。
+
+2. 已部署自动化模块 (OpenClaw Agents):
+- 武器1: Arxiv 论文收割与 pSEO 引擎 (每天 06:00 自动扫街发文)
+- 武器2: GitHub 爆款项目截流矩阵 (每天 12:00 自动寄生开源生态)
+
+3. 待打通的大动脉 (Next Actions):
+- [ ] 接入 Cloudflare API 获取实时 UV/PV。
+- [ ] 接入 One-API 数据库获取实时注册与调用量。
+-[ ] 接入 Stripe Webhook 实现全自动算力充值。
+                        </textarea>
+                    </div>
+                </div>
+            </body>
+            </html>
+            """
+            self.wfile.write(html.encode('utf-8'))
+        else:
+            super().do_GET()
+
+socketserver.TCPServer.allow_reuse_address = True
+with socketserver.TCPServer(("", PORT), AIONDashboardHandler) as httpd:
+    print("AION Dashboard serving at port", PORT)
+    httpd.serve_forever()

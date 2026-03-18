@@ -1,0 +1,5 @@
+nohup: ignoring input
+  File "/root/OpenClaw/dashboard.py", line 54
+    pkill -f dashboard.py
+             ^^^^^^^^^
+SyntaxError: invalid syntax

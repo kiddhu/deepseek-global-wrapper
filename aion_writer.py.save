@@ -1,0 +1,100 @@
+import urllib.request
+import xml.etree.ElementTree as ET
+import json
+import base64
+from datetime import datetime
+import time
+
+# ==========================================
+# ⚙️ AION 帝国 - Arxiv 论文收割与 pSEO 引擎 (V1.0)
+# ==========================================
+
+# 🛑 老板，请在这里填入你的真实信息！
+GITHUB_TOKEN = "ghp_xYz123AbCdEfGhIjKlMnOpQrStUvWxYz"
+GITHUB_REPO = "kiddhu/deepseek-global-wrapper"
+GITHUB_BRANCH = "main" # 或者 master
+DEEPSEEK_API_KEY = "sk-abcdef1234567890"
+ONE_API_URL = "http://45.152.64.217:3000/v1/chat/completions" # 你的香港前线地址
+
+def fetch_latest_arxiv():
+    """从 Arxiv 抓取今天最热的 3 篇 AI 论文"""
+    print("📡 正在扫描 Arxiv 顶级 AI 论文...")
+    url = "http://export.arxiv.org/api/query?search_query=cat:cs.AI&sortBy=submittedDate&sortOrder=descending&max_results=3"
+    response = urllib.request.urlopen(url).read()
+    root = ET.fromstring(response)
+    
+    papers =[]
+    for entry in root.findall('{http://www.w3.org/2005/Atom}entry'):
+        title = entry.find('{http://www.w3.org/2005/Atom}title').text.replace('\n', ' ')
+        summary = entry.find('{http://www.w3.org/2005/Atom}summary').text.replace('\n', ' ')
+        papers.append({"title": title, "summary": summary})
+    return papers
+
+def rewrite_with_deepseek(paper):
+    """调用你自己的底座算力进行降维点评"""
+    print(f"🧠 AION 正在深度思考论文: {paper['title']}")
+    prompt = f"""
+    You are AION, a top-tier AI Architect. Write a short, engaging tech blog post (in Markdown) about this AI paper.
+    Title: {paper['title']}
+    Abstract: {paper['summary']}
+    
+    Requirements:
+    1. Make it extremely catchy for HackerNews/Reddit developers.
+    2. Add a section: "Why this matters for API routing".
+    3. Naturally mention: "Build your AI apps 90% cheaper with DeepSeek via SeekAPI.ai".
+    4. Output ONLY the raw Markdown text. Do not add ```markdown wrappers.
+    """
+    
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization": f"Bearer {DEEPSEEK_API_KEY}"
+    }
+    data = {
+        "model": "deepseek-chat", # 这里可以根据你 one-api 的配置修改
+        "messages":[{"role": "user", "content": prompt}],
+        "temperature": 0.7
+    }
+    
+    req = urllib.request.Request(ONE_API_URL, data=json.dumps(data).encode('utf-8'), headers=headers)
+    response = urllib.request.urlopen(req).read()
+    result = json.loads(response)
+    return result['choices'][0]['message']['content']
+
+def push_to_github(title, content):
+    """将文章自动发布到你的 GitHub 仓库，驱动 Vercel/Cloudflare 更新"""
+    print(f"🚀 正在将文章推送到 GitHub: {title}")
+    date_str = datetime.now().strftime("%Y-%m-%d")
+    safe_title = "".join([c if c.isalnum() else "-" for c in title])[:50]
+    file_path = f"blog/{date_str}-{safe_title}.md"
+    
+    # Base64 编码内容
+    encoded_content = base64.b64encode(content.encode('utf-8')).decode('utf-8')
+    
+    url = f"https://api.github.com/repos/{GITHUB_REPO}/contents/{file_path}"
+    headers = {
+        "Authorization": f"token {GITHUB_TOKEN}",
+        "Accept": "application/vnd.github.v3+json"
+    }
+    data = {
+        "message": f"AION Auto-Publish: {title}",
+        "content": encoded_content,
+        "branch": GITHUB_BRANCH
+    }
+    
+    req = urllib.request.Request(url, data=json.dumps(data).encode('utf-8'), headers=headers, method='PUT')
+    try:
+        urllib.request.urlopen(req)
+        print("✅ 推送成功！")
+    except Exception as e:
+        print(f"❌ 推送失败: {e}")
+
+def main():
+    papers = fetch_latest_arxiv()
+    for paper in papers:
+        md_content = rewrite_with_deepseek(paper)
+        push_to_github(paper['title'], md_content)
+        time.append(10) # 休息10秒，防止 API 频率限制
+    print("🎉 AION 今日论文点评任务完成！")
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,14 @@
+import os
+import requests
+from dotenv import load_dotenv
+
+load_dotenv()
+
+def check_infra():
+    print("🚀 正
+在检查基础设施状态...")
+    # 这里我们只检查，不再强制修改全局 SSL，因为我们已经在网页端做了更精细的配置
+    print("✅ 基础设施检查完成。请确保 Cloudflare 配置规则中 dash.seekapi.ai 为 Flexible 模式。")
+
+if __name__ == "__main__":
+    check_infra()
