@@ -5,7 +5,7 @@ export default function HomePage() {
         <div className="container">
           <section>
             <p className="hero-eyebrow">SEEKAPI.AI · DEEPSEEK GATEWAY</p>
-            <h1 className="hero-title">DeepSeek R1, Globally Accessible.</h1>
+            <h1 className="hero-title">DeepSeek R1, Globally Accessible..</h1>
             <p className="hero-subtitle">
               Cost-effective access to DeepSeek reasoning models (R1) and DeepSeek
               V3 via an OpenAI-compatible interface. Designed for global usage with
