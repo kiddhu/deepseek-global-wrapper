@@ -5,11 +5,11 @@ export default function HomePage() {
         <div className="container">
           <section>
             <p className="hero-eyebrow">SEEKAPI.AI · DEEPSEEK GATEWAY</p>
-            <h1 className="hero-title">DeepSeek R1, Globally Accessible..</h1>
+            <h1 className="hero-title">DeepSeek R1, Globally Accessible.</h1>
             <p className="hero-subtitle">
-              Cost-effective access to DeepSeek reasoning models (R1) and DeepSeek
-              V3 via an OpenAI-compatible interface. Designed for global usage with
-              minimal integration friction.
+              Cost-effective access to DeepSeek reasoning models (R1) and DeepSeek V3 via an
+              OpenAI-compatible interface. Designed for global usage with minimal integration
+              friction.
             </p>
 
             <div className="hero-badges">
@@ -32,15 +32,15 @@ export default function HomePage() {
             <article className="card">
               <h2 className="card-title">Cost-efficient Model Access</h2>
               <p className="card-body">
-                Access DeepSeek R1 and DeepSeek V3 through a unified gateway intended
-                for lower inference costs in production workloads.
+                Access DeepSeek R1 and DeepSeek V3 through a unified gateway intended for lower
+                inference costs in production workloads.
               </p>
             </article>
             <article className="card">
               <h2 className="card-title">OpenAI-compatible Chat API</h2>
               <p className="card-body">
-                Keep your existing prompts and client logic. Swap the base URL and
-                reuse the Chat Completions flow.
+                Keep your existing prompts and client logic. Swap the base URL and reuse the Chat
+                Completions flow.
               </p>
             </article>
             <article className="card">
@@ -56,10 +56,11 @@ export default function HomePage() {
 
       <footer className="footer">
         <div className="footer-inner">
-          <span className="footer-brand">SEEKAPI.AI · SEEKAPI.ai</span>
-          <span className="footer-meta">
-            Built on Vercel · Protected by Cloudflare · Powered by DeepSeek
+          <span className="footer-brand">
+            Room P11, Flat 2C, 2/F, Hung To Ctr., 94-96 How Ming St., Kwun Tong, Kowloon, HK
           </span>
+          <span className="footer-meta">support@seekapi.ai</span>
+          <span className="footer-meta">© 2026 SeekAPI.ai | AION: The Era of the One.</span>
         </div>
       </footer>
     </div>
