@@ -11,18 +11,36 @@ export default function PricingPage() {
 
           <section className="card-grid" aria-label="Pricing plans">
             <article className="card">
-              <h2 className="card-title">Free</h2>
-              <p className="card-body">$0</p>
+              <h2 className="card-title">Standard ($0.15 / 1M Tokens)</h2>
+              <p className="card-body">
+                Best for daily API usage with predictable pricing and OpenAI-compatible requests.
+              </p>
             </article>
-            <article className="card">
-              <h2 className="card-title">Starter</h2>
-              <p className="card-body">$20/mo</p>
+            <article
+              className="card"
+              style={{ borderColor: "#111827", boxShadow: "0 0 0 1px #111827 inset" }}
+            >
+              <h2 className="card-title">Professional ($0.12 / 1M Tokens)</h2>
+              <p className="card-body">
+                Recommended for scaling products. Lower token cost, priority routing, and higher
+                throughput limits.
+              </p>
+              <p className="badge" style={{ marginTop: "0.8rem", width: "fit-content" }}>
+                Most Popular · 80% cheaper than competition
+              </p>
             </article>
             <article className="card">
               <h2 className="card-title">Enterprise</h2>
-              <p className="card-body">Custom</p>
+              <p className="card-body">
+                Custom
+                <br />
+                Dedicated support, SLA options, and private deployment integrations.
+              </p>
             </article>
           </section>
+          <p className="hero-subtitle" style={{ marginTop: "1rem" }}>
+            7-Day Money Back Guarantee (Unused Balance)
+          </p>
         </div>
       </main>
       <footer className="footer">

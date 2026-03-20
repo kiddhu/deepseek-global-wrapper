@@ -9,6 +9,9 @@ export default function RefundPage() {
             Refund requests are reviewed based on billing status, usage history, and documented
             service incidents.
           </p>
+          <p className="hero-subtitle" style={{ marginTop: "-0.5rem" }}>
+            7-Day Money Back Guarantee for unused balance.
+          </p>
 
           <section className="card-grid" aria-label="Refund content">
             <article className="card">

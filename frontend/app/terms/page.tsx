@@ -31,6 +31,10 @@ export default function TermsPage() {
                 and reliability.
               </p>
             </article>
+            <article className="card">
+              <h2 className="card-title">Refund Guarantee</h2>
+              <p className="card-body">7-Day Money Back Guarantee for unused balance.</p>
+            </article>
           </section>
         </div>
       </main>

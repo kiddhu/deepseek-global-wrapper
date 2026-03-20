@@ -1,31 +1,33 @@
-export default function BlogPage() {
+export default function UseCasesPage() {
   return (
     <div className="page-shell">
       <main className="page-content">
         <div className="container">
-          <p className="hero-eyebrow">BLOG</p>
-          <h1 className="hero-title">SEO Traffic Pool</h1>
+          <p className="hero-eyebrow">USE CASES</p>
+          <h1 className="hero-title">Blueprints That Convert</h1>
           <p className="hero-subtitle">
-            Technical growth content for builders, operators, and AI product teams running on
-            cost-efficient inference.
+            Proven deployment patterns for teams that care about cost per request and growth speed.
           </p>
-          <section className="card-grid" aria-label="Featured topics">
+
+          <section className="card-grid" aria-label="Use case templates">
             <article className="card">
-              <h2 className="card-title">DeepSeek R1 Cost Benchmarks</h2>
+              <h2 className="card-title">Customer Support Copilot</h2>
               <p className="card-body">
-                Real production numbers for latency, quality, and budget trade-offs at scale.
+                Reduce support response cost while maintaining quality for high-volume ticket
+                queues.
               </p>
             </article>
             <article className="card">
-              <h2 className="card-title">Migration Guides</h2>
+              <h2 className="card-title">Marketing Content Engine</h2>
               <p className="card-body">
-                Switch from OpenAI in under 30 seconds with minimal risk and no SDK rewrite.
+                Power multilingual blog and ad generation pipelines with lower variable API spend.
               </p>
             </article>
             <article className="card">
-              <h2 className="card-title">Global Traffic Routing</h2>
+              <h2 className="card-title">Code Review Assistant</h2>
               <p className="card-body">
-                Architecture notes on throughput, failover, and billing-aware request strategies.
+                Integrate into CI to analyze pull requests, summarize risk, and suggest fixes at
+                scale.
               </p>
             </article>
           </section>

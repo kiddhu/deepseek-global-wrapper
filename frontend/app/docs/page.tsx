@@ -20,8 +20,17 @@ export default function DocsPage() {
               <p className="card-body">Authorization: Bearer YOUR_API_KEY</p>
             </article>
             <article className="card">
-              <h2 className="card-title">Model Example</h2>
-              <p className="card-body">deepseek-r1</p>
+              <h2 className="card-title">Python Integration</h2>
+              <p className="card-body">
+                <code>
+                  import openai
+                  <br />
+                  client = openai.OpenAI(api_key=&quot;YOUR_API_KEY&quot;)
+                  <br />
+                  client.base_url = &quot;https://dash.seekapi.ai/v1&quot;
+                  <br /># Authorization: Bearer YOUR_API_KEY
+                </code>
+              </p>
             </article>
           </section>
         </div>

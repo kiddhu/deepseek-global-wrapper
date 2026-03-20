@@ -143,6 +143,63 @@ body {
   color: #4b5563;
 }
 
+.range-slider {
+  margin-top: 0.8rem;
+  width: 100%;
+  accent-color: #111827;
+}
+
+.status-bars {
+  margin-top: 0.9rem;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.status-bars span {
+  display: block;
+  height: 8px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #111827, #334155);
+}
+
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  overflow: hidden;
+  font-size: 0.9rem;
+}
+
+.compare-table th,
+.compare-table td {
+  text-align: left;
+  padding: 0.8rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.compare-table thead th {
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+.compare-table tbody th {
+  font-weight: 600;
+  width: 24%;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
 .footer {
   border-top: 1px solid #111827;
   background: radial-gradient(circle at 0 0, #facc15 0, transparent 55%),

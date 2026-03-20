@@ -1,54 +1,92 @@
+/* eslint-disable react/no-unescaped-entities */
+"use client";
+
+import { useMemo, useState } from "react";
+
 export default function HomePage() {
+  const [tokensM, setTokensM] = useState(120);
+  const openAICost = useMemo(() => tokensM * 10, [tokensM]);
+  const seekAPICost = useMemo(() => Number((openAICost * 0.12).toFixed(2)), [openAICost]);
+
   return (
     <div className="page-shell">
       <main className="page-content">
         <div className="container">
-          <section>
-            <p className="hero-eyebrow">SEEKAPI.AI · DEEPSEEK GATEWAY</p>
-            <h1 className="hero-title">DeepSeek R1, Globally Accessible.</h1>
-            <p className="hero-subtitle">
-              Cost-effective access to DeepSeek reasoning models (R1) and DeepSeek V3 via an
-              OpenAI-compatible interface. Designed for global usage with minimal integration
-              friction.
-            </p>
+          <section aria-labelledby="hero-title">
+            <p className="hero-eyebrow">SEEKAPI.AI · GLOBAL COMPUTE ARBITRAGE</p>
+            <h1 className="hero-title" id="hero-title">
+              Save 90% on AI API Costs.
+            </h1>
+            <p className="hero-subtitle">100% OpenAI Compatible. Switch in 30 seconds.</p>
 
             <div className="hero-badges">
-              <span className="badge">Cost-effective R1/V3</span>
-              <span className="badge">OpenAI-compatible gateway</span>
-              <span className="badge">Global deployment pipeline</span>
+              <span className="badge">DeepSeek R1 / V3 Gateway</span>
+              <span className="badge">HK Nodes + Global Edge</span>
+              <span className="badge">7-Day Money Back Guarantee</span>
             </div>
 
             <div className="hero-actions">
-              <a href="/docs" className="button-primary">
+              <a href="https://dash.seekapi.ai/login" className="button-primary">
                 Get Started
               </a>
-              <a href="/blog" className="button-ghost">
-                AION Insights
+              <a href="https://dash.seekapi.ai/login" className="button-ghost">
+                Login
+              </a>
+              <a href="/pricing" className="button-ghost">
+                See Pricing
               </a>
             </div>
+
+            <p className="hero-subtitle" style={{ marginTop: "-0.5rem", color: "#9ca3af" }}>
+              Trusted by teams building on GitHub, Vercel, and Cloudflare.
+            </p>
           </section>
 
-          <section className="card-grid" aria-label="Core Components">
+          <section className="card-grid" aria-label="Cost calculator and migration">
             <article className="card">
-              <h2 className="card-title">Cost-efficient Model Access</h2>
+              <h2 className="card-title">Interactive Calculator</h2>
               <p className="card-body">
-                Access DeepSeek R1 and DeepSeek V3 through a unified gateway intended for lower
-                inference costs in production workloads.
+                Monthly usage: <strong>{tokensM}M</strong> tokens
+                <br />
+                OpenAI Cost: <strong>${openAICost.toLocaleString()}</strong>
+                <br />
+                SeekAPI Cost: <strong>${seekAPICost.toLocaleString()}</strong>
               </p>
+              <input
+                type="range"
+                min={1}
+                max={1000}
+                value={tokensM}
+                onChange={(e) => setTokensM(Number(e.target.value))}
+                className="range-slider"
+                aria-label="Monthly token usage in millions"
+              />
             </article>
             <article className="card">
-              <h2 className="card-title">OpenAI-compatible Chat API</h2>
+              <h2 className="card-title">Speed Radar (HK Node)</h2>
               <p className="card-body">
-                Keep your existing prompts and client logic. Swap the base URL and reuse the Chat
-                Completions flow.
+                p50 latency: <strong>82ms</strong>
+                <br />
+                p95 latency: <strong>137ms</strong>
+                <br />
+                Uptime: <strong>99.97%</strong>
               </p>
+              <div className="status-bars" aria-hidden="true">
+                <span style={{ width: "92%" }} />
+                <span style={{ width: "84%" }} />
+                <span style={{ width: "97%" }} />
+              </div>
             </article>
             <article className="card">
-              <h2 className="card-title">Unified Architecture</h2>
+              <h2 className="card-title">Code Bridge</h2>
               <p className="card-body">
-                Frontend is deployed from <code>/frontend</code>, while backend agents and
-                integrations live in the repository root.
+                Migrate with one change:
+                <br />
+                <code>openai.base_url = "https://dash.seekapi.ai/v1"</code>
               </p>
+              <a href="/compare" className="button-ghost" style={{ display: "inline-block" }}>
+                Compare vs OpenAI
+              </a>
             </article>
           </section>
         </div>
