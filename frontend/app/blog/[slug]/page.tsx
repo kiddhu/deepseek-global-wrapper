@@ -5,13 +5,15 @@ import { SiteHeader } from "../../components/site-header";
 import { getAllPosts, getPostBySlug, markdownToHtml } from "../_lib";
 
 type Params = { slug: string };
+type PageProps = { params: Promise<Params> };
 
 export function generateStaticParams() {
   return getAllPosts().map((post) => ({ slug: post.slug }));
 }
 
-export function generateMetadata({ params }: { params: Params }): Metadata {
-  const post = getPostBySlug(params.slug);
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const post = getPostBySlug(slug);
   if (!post) {
     return { title: "Article Not Found" };
   }
@@ -21,8 +23,9 @@ export function generateMetadata({ params }: { params: Params }): Metadata {
   };
 }
 
-export default function BlogArticlePage({ params }: { params: Params }) {
-  const post = getPostBySlug(params.slug);
+export default async function BlogArticlePage({ params }: PageProps) {
+  const { slug } = await params;
+  const post = getPostBySlug(slug);
   if (!post) {
     notFound();
   }
