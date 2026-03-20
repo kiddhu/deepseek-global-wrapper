@@ -3,11 +3,7 @@ const NAV_ITEMS = [
   { href: "/pricing", label: "Pricing" },
   { href: "/compare", label: "Compare" },
   { href: "/docs", label: "Docs" },
-  { href: "/blog", label: "Blog" },
   { href: "/status", label: "Status" },
-  { href: "/terms", label: "Terms" },
-  { href: "/refund", label: "Refund" },
-  { href: "/privacy", label: "Privacy" },
 ];
 
 export function SiteHeader() {
