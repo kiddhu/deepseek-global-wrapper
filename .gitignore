@@ -7,3 +7,4 @@ __pycache__/
 github_token.txt
 .git_bak/
 *.save
+node_modules
