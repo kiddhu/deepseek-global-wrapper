@@ -65,3 +65,5 @@ print(completion.choices[0].message.content)
 - **Do not commit secrets** (API keys, GitHub tokens, Supabase service keys).
 - `github_token.txt` is ignored by Git by default (`.gitignore`), and should not be present in the repository.
 
+<!-- Trigger Build: 2026-03-20 21:05 -->
+
