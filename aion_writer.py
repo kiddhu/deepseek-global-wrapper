@@ -17,6 +17,8 @@ API_KEY = os.environ.get("DEEPSEEK_API_KEY", "").strip()
 API_URL = "http://45.152.64.217:3000/v1/chat/completions"
 VERCEL_HOOK = os.environ.get("VERCEL_HOOK_URL", "").strip()
 GITHUB_API_BASE = "https://api.github.com"
+LOCAL_REPO_DIR = os.path.expanduser("~/OpenClaw")
+LOCAL_BLOG_DIR = os.path.join(LOCAL_REPO_DIR, "blog")
 
 
 LANG_CONFIG = {
@@ -78,6 +80,45 @@ def auto_push_local_git(published_paths: list[str]) -> None:
         print(f"[aion_writer] local git auto-push skipped: {exc}")
 
 
+def write_local_blog_file(filename: str, content: str) -> str:
+    os.makedirs(LOCAL_BLOG_DIR, exist_ok=True)
+    path = os.path.join(LOCAL_BLOG_DIR, filename)
+    with open(path, "w", encoding="utf-8") as f:
+        f.write(content)
+    return path
+
+
+def push_local_blog_to_origin(local_paths: list[str]) -> None:
+    if not local_paths:
+        return
+    if not TOKEN:
+        print("[aion_writer] missing GITHUB_TOKEN; local git push skipped")
+        return
+    try:
+        rel_paths = [os.path.relpath(p, LOCAL_REPO_DIR) for p in local_paths]
+        subprocess.run(["git", "add", *rel_paths], cwd=LOCAL_REPO_DIR, check=True, timeout=20)
+        commit_msg = f"chore(blog): auto-publish {len(rel_paths)} localized posts"
+        commit = subprocess.run(
+            ["git", "commit", "-m", commit_msg],
+            cwd=LOCAL_REPO_DIR,
+            timeout=20,
+            capture_output=True,
+            text=True,
+        )
+        if commit.returncode != 0 and "nothing to commit" not in commit.stdout.lower():
+            raise RuntimeError(commit.stderr.strip() or commit.stdout.strip())
+
+        remote = f"https://{TOKEN}@github.com/{REPO}.git"
+        subprocess.run(
+            ["git", "push", remote, "main:main"],
+            cwd=LOCAL_REPO_DIR,
+            check=True,
+            timeout=90,
+        )
+    except Exception as exc:
+        print(f"[aion_writer] local blog push skipped: {exc}")
+
+
 def generate_multilang_articles(title: str, abstract: str) -> dict[str, str]:
     articles: dict[str, str] = {}
     if not API_KEY:
@@ -131,6 +172,7 @@ def main():
         base_slug = re.sub(r"[^a-z0-9]+", "_", title.lower()).strip("_")
 
         published_paths = []
+        local_written_paths = []
         for lang in LANG_CONFIG.keys():
             body = articles.get(lang, "").strip()
             if not body:
@@ -148,8 +190,10 @@ def main():
             path = f"blog/{filename}"
             put_markdown_to_github(path, full_md)
             published_paths.append(path)
+            local_written_paths.append(write_local_blog_file(filename, full_md))
 
         auto_push_local_git(published_paths)
+        push_local_blog_to_origin(local_written_paths)
 
         conn = get_db_connection()
         cur = conn.cursor()

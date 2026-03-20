@@ -1,5 +1,12 @@
+import type { Metadata } from "next";
 import { SiteFooter } from "../components/site-footer";
 import { SiteHeader } from "../components/site-header";
+
+export const metadata: Metadata = {
+  title: "Pricing | SeekAPI.ai",
+  description: "Transparent DeepSeek R1/V3 pricing with OpenAI-compatible SDK support.",
+  keywords: ["SeekAPI pricing", "DeepSeek API pricing", "token cost calculator"],
+};
 
 export default function PricingPage() {
   return (

@@ -1,6 +1,14 @@
+import type { Metadata } from "next";
 import { SiteFooter } from "../components/site-footer";
 import { SiteHeader } from "../components/site-header";
 import { getAllPosts } from "./_lib";
+
+export const metadata: Metadata = {
+  title: "Network Insights Blog | SeekAPI.ai",
+  description:
+    "Engineering articles on API cost optimization, latency routing, and DeepSeek operations.",
+  keywords: ["SeekAPI blog", "AI API optimization", "DeepSeek guides", "network insights"],
+};
 
 export default function BlogPage() {
   const posts = getAllPosts();

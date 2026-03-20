@@ -46,6 +46,16 @@ export default async function BlogArticlePage({ params }: PageProps) {
     },
     mainEntityOfPage: `https://seekapi.ai/blog/${post.slug}`,
     description: post.description,
+    about: [
+      "OpenAI-compatible DeepSeek integration",
+      "AI inference cost optimization",
+      "Global low-cost compute gateway",
+    ],
+    offers: {
+      "@type": "Offer",
+      priceCurrency: "USD",
+      description: "SeekAPI positioning: globally cost-efficient DeepSeek gateway for developers.",
+    },
   };
 
   return (

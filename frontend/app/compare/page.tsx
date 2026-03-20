@@ -1,5 +1,12 @@
+import type { Metadata } from "next";
 import { SiteFooter } from "../components/site-footer";
 import { SiteHeader } from "../components/site-header";
+
+export const metadata: Metadata = {
+  title: "Compare SeekAPI vs OpenAI",
+  description: "Compare pricing, latency, migration effort, and payment flexibility side by side.",
+  keywords: ["SeekAPI vs OpenAI", "API cost comparison", "DeepSeek latency benchmark"],
+};
 
 export default function ComparePage() {
   return (
