@@ -1,6 +1,10 @@
+import { SiteFooter } from "../components/site-footer";
+import { SiteHeader } from "../components/site-header";
+
 export default function PricingPage() {
   return (
     <div className="page-shell">
+      <SiteHeader />
       <main className="page-content">
         <div className="container">
           <p className="hero-eyebrow">PRICING</p>
@@ -8,6 +12,9 @@ export default function PricingPage() {
           <p className="hero-subtitle">
             Transparent plans for developers, startups, and enterprise workloads.
           </p>
+          <a href="https://dash.seekapi.ai/login" className="credit-pill">
+            $0.50 Free Credit - No Credit Card Required
+          </a>
 
           <section className="card-grid" aria-label="Pricing plans">
             <article className="card">
@@ -15,6 +22,7 @@ export default function PricingPage() {
               <p className="card-body">
                 Best for daily API usage with predictable pricing and OpenAI-compatible requests.
               </p>
+              <p className="card-body">For DeepSeek R1 & V3. Compatible with all OpenAI SDKs.</p>
             </article>
             <article
               className="card"
@@ -25,6 +33,9 @@ export default function PricingPage() {
                 Recommended for scaling products. Lower token cost, priority routing, and higher
                 throughput limits.
               </p>
+              <p className="card-body">For DeepSeek R1 & V3. Compatible with all OpenAI SDKs.</p>
+              <p className="card-body">- High-Priority Global Routing</p>
+              <p className="card-body">- Custom Rate Limits</p>
               <p className="badge" style={{ marginTop: "0.8rem", width: "fit-content" }}>
                 Most Popular · 80% cheaper than competition
               </p>
@@ -36,6 +47,7 @@ export default function PricingPage() {
                 <br />
                 Dedicated support, SLA options, and private deployment integrations.
               </p>
+              <p className="card-body">For DeepSeek R1 & V3. Compatible with all OpenAI SDKs.</p>
             </article>
           </section>
           <p className="hero-subtitle" style={{ marginTop: "1rem" }}>
@@ -43,15 +55,7 @@ export default function PricingPage() {
           </p>
         </div>
       </main>
-      <footer className="footer">
-        <div className="footer-inner">
-          <span className="footer-brand">
-            Room P11, Flat 2C, 2/F, Hung To Ctr., 94-96 How Ming St., Kwun Tong, Kowloon, HK
-          </span>
-          <span className="footer-meta">support@seekapi.ai</span>
-          <span className="footer-meta">© 2026 SeekAPI.ai | AION: The Era of the One.</span>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

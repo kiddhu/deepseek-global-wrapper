@@ -1,6 +1,10 @@
+import { SiteFooter } from "../components/site-footer";
+import { SiteHeader } from "../components/site-header";
+
 export default function DocsPage() {
   return (
     <div className="page-shell">
+      <SiteHeader />
       <main className="page-content">
         <div className="container">
           <p className="hero-eyebrow">DEVELOPER DOCS</p>
@@ -13,37 +17,20 @@ export default function DocsPage() {
           <section className="card-grid" aria-label="API guide">
             <article className="card">
               <h2 className="card-title">Endpoint</h2>
-              <p className="card-body">POST https://dash.seekapi.ai/v1/chat/completions</p>
+              <p className="card-body">POST https://api.seekapi.ai/v1/chat/completions</p>
             </article>
             <article className="card">
               <h2 className="card-title">Auth Header</h2>
               <p className="card-body">Authorization: Bearer YOUR_API_KEY</p>
             </article>
             <article className="card">
-              <h2 className="card-title">Python Integration</h2>
-              <p className="card-body">
-                <code>
-                  import openai
-                  <br />
-                  client = openai.OpenAI(api_key=&quot;YOUR_API_KEY&quot;)
-                  <br />
-                  client.base_url = &quot;https://dash.seekapi.ai/v1&quot;
-                  <br /># Authorization: Bearer YOUR_API_KEY
-                </code>
-              </p>
+              <h2 className="card-title">Model Example</h2>
+              <p className="card-body">deepseek-r1</p>
             </article>
           </section>
         </div>
       </main>
-      <footer className="footer">
-        <div className="footer-inner">
-          <span className="footer-brand">
-            Room P11, Flat 2C, 2/F, Hung To Ctr., 94-96 How Ming St., Kwun Tong, Kowloon, HK
-          </span>
-          <span className="footer-meta">support@seekapi.ai</span>
-          <span className="footer-meta">© 2026 SeekAPI.ai | AION: The Era of the One.</span>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

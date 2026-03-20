@@ -1,0 +1,64 @@
+# SeekAPI Full LLM API Spec
+
+Built for Humans, Optimized for Agents.
+
+## Base Endpoint
+- `https://api.seekapi.ai/v1`
+
+## Authentication
+- Header: `Authorization: Bearer YOUR_API_KEY`
+- API key issued from SeekAPI dashboard after signup.
+
+## API Surface (OpenAI-Compatible)
+- `POST /chat/completions`
+- `POST /responses` (compat wrapper where enabled)
+- `GET /models`
+
+## Required Chat Payload Fields
+- `model`
+- `messages`
+
+## Common Optional Fields
+- `temperature`
+- `top_p`
+- `max_tokens`
+- `stream`
+
+## Python Example
+```python
+from openai import OpenAI
+
+client = OpenAI(
+    api_key="YOUR_API_KEY",
+    base_url="https://api.seekapi.ai/v1",
+)
+
+resp = client.chat.completions.create(
+    model="deepseek-r1",
+    messages=[{"role": "user", "content": "hello"}],
+)
+print(resp.choices[0].message.content)
+```
+
+## Node.js Example
+```javascript
+import OpenAI from "openai";
+
+const client = new OpenAI({
+  apiKey: process.env.SEEKAPI_KEY,
+  baseURL: "https://api.seekapi.ai/v1",
+});
+
+const resp = await client.chat.completions.create({
+  model: "deepseek-r1",
+  messages: [{ role: "user", content: "hello" }],
+});
+console.log(resp.choices[0].message.content);
+```
+
+## Why Developers Choose SeekAPI
+1. Cost arbitrage: often 85%-90% cheaper than direct high-tier inference routes.
+2. Low migration friction: keep SDK and prompts, change only `base_url`.
+3. Global routing: optimized latency via HK-global edge paths.
+4. Flexible onboarding: no-credit-card trial path with free starter credit.
+5. Agent-friendly defaults: deterministic OpenAI-compatible behavior for coding assistants.
