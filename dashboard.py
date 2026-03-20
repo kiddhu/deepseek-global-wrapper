@@ -1,111 +1,153 @@
 import html
-import http.server
 import os
 import re
-import socketserver
-from urllib.parse import parse_qs, urlparse
+import socket
+from flask import Flask, Response, request
 
-PORT = int(os.environ.get("DASHBOARD_PORT", "8080"))
+from db_utils import get_db_connection
+
 HOST = os.environ.get("DASHBOARD_HOST", "0.0.0.0")
+PORT = int(os.environ.get("DASHBOARD_PORT", "8080"))
 AUTH_TOKEN = os.environ.get("DASHBOARD_TOKEN", "").strip()
-AUDIT_PATH = "/root/OpenClaw/audit.log"
+
 BLOG_PATH = "/root/OpenClaw/blog"
+LOG_DIR = "/root/OpenClaw/logs"
+AUDIT_PATH = f"{LOG_DIR}/audit.log"
+
+app = Flask(__name__)
 
 
-def parse_metrics_from_audit() -> dict:
-    leads = 0
-    latest_lead = "N/A"
+def ensure_paths():
+    os.makedirs(BLOG_PATH, exist_ok=True)
+    os.makedirs(LOG_DIR, exist_ok=True)
     if not os.path.exists(AUDIT_PATH):
-        return {"leads": 0, "latest_lead": latest_lead}
+        with open(AUDIT_PATH, "a", encoding="utf-8"):
+            pass
 
+
+def count_blog_posts() -> int:
+    return len([n for n in os.listdir(BLOG_PATH) if n.endswith(".md")])
+
+
+def parse_leads_from_audit() -> tuple[int, str]:
+    leads = 0
+    latest = "N/A"
     with open(AUDIT_PATH, "r", encoding="utf-8") as f:
-        lines = f.readlines()
-
-    for line in lines:
-        if "[The Hunter]" in line and "捕获" in line and "条生产线索" in line:
-            m = re.search(r"捕获\s+(\d+)\s+条生产线索", line)
-            if m:
-                leads += int(m.group(1))
-                latest_lead = line.strip()
-    return {"leads": leads, "latest_lead": latest_lead}
+        for line in f:
+            if "[The Hunter]" in line and "捕获" in line and "条生产线索" in line:
+                m = re.search(r"捕获\s+(\d+)\s+条生产线索", line)
+                if m:
+                    leads += int(m.group(1))
+                    latest = line.strip()
+    return leads, latest
 
 
-def count_blog_markdown() -> int:
-    if not os.path.isdir(BLOG_PATH):
+def hk_oneapi_online() -> bool:
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    sock.settimeout(2)
+    try:
+        return sock.connect_ex(("45.152.64.217", 3000)) == 0
+    finally:
+        sock.close()
+
+
+def today_agent_memory_count() -> int:
+    try:
+        conn = get_db_connection()
+        cur = conn.cursor()
+        cur.execute("SELECT COUNT(*) FROM agent_memory WHERE created_at::date = CURRENT_DATE")
+        count = int(cur.fetchone()[0] or 0)
+        cur.close()
+        conn.close()
+        return count
+    except Exception:
         return 0
-    return len([name for name in os.listdir(BLOG_PATH) if name.endswith(".md")])
 
 
-class AIONHandler(http.server.SimpleHTTPRequestHandler):
-    def _is_authorized(self):
-        if not AUTH_TOKEN:
-            return True
-        query = parse_qs(urlparse(self.path).query)
-        token = query.get("token", [""])[0]
-        header = self.headers.get("X-AION-TOKEN", "")
-        return token == AUTH_TOKEN or header == AUTH_TOKEN
-
-    def do_GET(self):
-        parsed = urlparse(self.path)
-        if parsed.path != "/":
-            super().do_GET()
-            return
-
-        if not self._is_authorized():
-            self.send_response(401)
-            self.send_header("Content-type", "text/plain; charset=utf-8")
-            self.end_headers()
-            self.wfile.write(b"Unauthorized: provide ?token=... or X-AION-TOKEN header")
-            return
-
-        self.send_response(200)
-        self.send_header("Content-type", "text/html; charset=utf-8")
-        self.end_headers()
-
-        metrics = parse_metrics_from_audit()
-        leads = metrics["leads"]
-        latest_lead = html.escape(metrics["latest_lead"])
-        blog_count = count_blog_markdown()
-
-        logs = []
-        if os.path.exists(AUDIT_PATH):
-            with open(AUDIT_PATH, "r", encoding="utf-8") as f:
-                logs = f.readlines()[-15:][::-1]
-        log_html = "".join(
-            [
-                f"<div style='border-bottom:1px solid #332b16;padding:8px;color:#d4af37;'>{html.escape(l.strip())}</div>"
-                for l in logs
-            ]
-        )
-
-        html_doc = f"""
-        <html><head><title>AION Dashboard</title><style>
-            body {{ background:#000; color:#d4af37; font-family:ui-sans-serif, sans-serif; padding:28px; }}
-            .grid {{ display:grid; grid-template-columns:repeat(4, 1fr); gap:16px; }}
-            .card {{ background:#0a0a0a; border:1px solid #3a2f14; padding:18px; border-radius:8px; }}
-            .stat {{ font-size:2.2rem; color:#f1d37a; font-weight:700; }}
-            h1,h2 {{ color:#f1d37a; }}
-            .mono {{ background:#050505; font-family:ui-monospace, monospace; }}
-        </style></head><body>
-            <h1>AION Imperial HQ</h1>
-            <div class="grid">
-                <div class="card">SEO Assets (/blog .md)<div class="stat">{blog_count}</div></div>
-                <div class="card">Lead Total<div class="stat">{leads}</div></div>
-                <div class="card">Host<div class="stat">{HOST}:{PORT}</div></div>
-                <div class="card">Access Mode<div class="stat">{'TOKEN' if AUTH_TOKEN else 'OPEN'}</div></div>
-            </div>
-            <h2>Latest Lead Event</h2>
-            <div class="card mono">{latest_lead}</div>
-            <h2>Audit Stream</h2>
-            <div class="card mono">{log_html}</div>
-        </body></html>
-        """
-        self.wfile.write(html_doc.encode("utf-8"))
+def auth_ok() -> bool:
+    if not AUTH_TOKEN:
+        return True
+    token_qs = request.args.get("token", "")
+    token_header = request.headers.get("X-AION-TOKEN", "")
+    return token_qs == AUTH_TOKEN or token_header == AUTH_TOKEN
 
 
-socketserver.TCPServer.allow_reuse_address = True
-with socketserver.TCPServer((HOST, PORT), AIONHandler) as httpd:
-    print(f"AION Dashboard running on http://{HOST}:{PORT}")
-    if AUTH_TOKEN:
-        print("Auth enabled: use ?token=*** or X-AION-TOKEN header")
-    httpd.serve_forever()
+@app.get("/")
+def index() -> Response:
+    if not auth_ok():
+        return Response("Unauthorized", status=401)
+
+    ensure_paths()
+    blog_total = count_blog_posts()
+    leads, latest_lead = parse_leads_from_audit()
+    hk_status = "ONLINE" if hk_oneapi_online() else "OFFLINE"
+    traffic = today_agent_memory_count()
+
+    html_doc = f"""
+    <html>
+    <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width,initial-scale=1" />
+      <title>AION Imperial HQ</title>
+      <style>
+        body {{
+          margin: 0;
+          background-color: #000;
+          color: #d4af37;
+          font-family: Inter, ui-sans-serif, sans-serif;
+          background-image:
+            linear-gradient(rgba(212,175,55,0.06) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(212,175,55,0.06) 1px, transparent 1px);
+          background-size: 26px 26px;
+        }}
+        .wrap {{ max-width: 1180px; margin: 0 auto; padding: 28px; }}
+        .top {{ display:flex; align-items:center; gap:12px; }}
+        .live-dot {{
+          width:10px; height:10px; border-radius:50%; background:#ff2d2d;
+          box-shadow:0 0 10px #ff2d2d; animation: pulse 1.4s infinite;
+        }}
+        .grid {{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:16px; margin-top: 16px; }}
+        .card {{
+          border: 1px solid #d4af37;
+          background: rgba(212, 175, 55, 0.05);
+          border-radius: 12px;
+          padding: 16px;
+        }}
+        .label {{ opacity:.9; font-size: .9rem; }}
+        .value {{ font-size: 3rem; font-weight: bold; color: #fff; text-shadow: 0 0 10px #d4af37; }}
+        .mono {{ font-family: ui-monospace, SFMono-Regular, Menlo, monospace; white-space: pre-wrap; }}
+        @media (max-width: 960px) {{
+          .grid {{ grid-template-columns:1fr 1fr; }}
+          .value {{ font-size: 2.1rem; }}
+        }}
+        @keyframes pulse {{
+          0% {{ opacity: .3; transform: scale(.9); }}
+          50% {{ opacity: 1; transform: scale(1.05); }}
+          100% {{ opacity: .3; transform: scale(.9); }}
+        }}
+      </style>
+    </head>
+    <body>
+      <div class="wrap">
+        <div class="top">
+          <div class="live-dot"></div>
+          <h1>AION Imperial HQ - BlackGold Console</h1>
+        </div>
+        <div class="grid">
+          <div class="card"><div class="label">Empire Assets (/blog)</div><div class="value">{blog_total}</div></div>
+          <div class="card"><div class="label">Captured Leads (audit.log)</div><div class="value">{leads}</div></div>
+          <div class="card"><div class="label">System Heartbeat (45.152.64.217:3000)</div><div class="value">{hk_status}</div></div>
+          <div class="card"><div class="label">Traffic Radar (today agent_memory)</div><div class="value">{traffic}</div></div>
+        </div>
+        <h3>Latest Lead Event</h3>
+        <div class="card mono">{html.escape(latest_lead)}</div>
+      </div>
+    </body>
+    </html>
+    """
+    return Response(html_doc, mimetype="text/html; charset=utf-8")
+
+
+if __name__ == "__main__":
+    ensure_paths()
+    app.run(host=HOST, port=PORT)
