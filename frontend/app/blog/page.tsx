@@ -1,7 +1,10 @@
 import { SiteFooter } from "../components/site-footer";
 import { SiteHeader } from "../components/site-header";
+import { getAllPosts } from "./_lib";
 
 export default function BlogPage() {
+  const posts = getAllPosts();
+
   return (
     <div className="page-shell">
       <SiteHeader />
@@ -13,25 +16,28 @@ export default function BlogPage() {
             Technical growth content for builders, operators, and AI product teams running on
             cost-efficient inference.
           </p>
-          <section className="card-grid" aria-label="Featured topics">
-            <article className="card">
-              <h2 className="card-title">DeepSeek R1 Cost Benchmarks</h2>
-              <p className="card-body">
-                Real production numbers for latency, quality, and budget trade-offs at scale.
-              </p>
-            </article>
-            <article className="card">
-              <h2 className="card-title">Migration Guides</h2>
-              <p className="card-body">
-                Switch from OpenAI in under 30 seconds with minimal risk and no SDK rewrite.
-              </p>
-            </article>
-            <article className="card">
-              <h2 className="card-title">Global Traffic Routing</h2>
-              <p className="card-body">
-                Architecture notes on throughput, failover, and billing-aware request strategies.
-              </p>
-            </article>
+          <section className="card-grid" aria-label="Blog posts">
+            {posts.length === 0 ? (
+              <article className="card">
+                <h2 className="card-title">No posts yet</h2>
+                <p className="card-body">
+                  Drop markdown files into root <code>/blog</code> and this page will auto-render
+                  them.
+                </p>
+              </article>
+            ) : null}
+            {posts.map((post) => (
+              <article className="card" key={post.slug}>
+                <h2 className="card-title">{post.title}</h2>
+                <p className="card-body">{post.description}</p>
+                <p className="card-body">
+                  <strong>{post.lang.toUpperCase()}</strong> · {post.date || "No date"}
+                </p>
+                <a className="button-ghost" href={`/blog/${post.slug}`}>
+                  Read Article
+                </a>
+              </article>
+            ))}
           </section>
         </div>
       </main>

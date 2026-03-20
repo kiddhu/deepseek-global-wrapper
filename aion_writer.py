@@ -1,6 +1,7 @@
 import base64
 import os
 import re
+import subprocess
 from datetime import datetime
 import xml.etree.ElementTree as ET
 
@@ -58,6 +59,25 @@ def put_markdown_to_github(path: str, content: str) -> None:
     res.raise_for_status()
 
 
+def auto_push_local_git(published_paths: list[str]) -> None:
+    """
+    Optional local git automation for environments that want shell-based push.
+    Enable with AION_ENABLE_GIT_AUTOPUSH=1.
+    """
+    if os.environ.get("AION_ENABLE_GIT_AUTOPUSH", "").strip() != "1":
+        return
+    if not published_paths:
+        return
+    try:
+        subprocess.run(["git", "add", *published_paths], check=True, timeout=20)
+        commit_msg = f"chore(blog): auto-publish {len(published_paths)} articles"
+        subprocess.run(["git", "commit", "-m", commit_msg], check=True, timeout=20)
+        subprocess.run(["git", "push"], check=True, timeout=60)
+    except Exception as exc:
+        # Keep main publishing path healthy even if local git automation fails.
+        print(f"[aion_writer] local git auto-push skipped: {exc}")
+
+
 def generate_multilang_articles(title: str, abstract: str) -> dict[str, str]:
     articles: dict[str, str] = {}
     if not API_KEY:
@@ -110,6 +130,7 @@ def main():
         today = datetime.utcnow().strftime("%Y%m%d")
         base_slug = re.sub(r"[^a-z0-9]+", "_", title.lower()).strip("_")
 
+        published_paths = []
         for lang in LANG_CONFIG.keys():
             body = articles.get(lang, "").strip()
             if not body:
@@ -126,6 +147,9 @@ def main():
             full_md = f"{frontmatter}\n\n{body}"
             path = f"blog/{filename}"
             put_markdown_to_github(path, full_md)
+            published_paths.append(path)
+
+        auto_push_local_git(published_paths)
 
         conn = get_db_connection()
         cur = conn.cursor()

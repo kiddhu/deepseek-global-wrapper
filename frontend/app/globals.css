@@ -286,6 +286,89 @@ body {
   resize: vertical;
 }
 
+.docs-shell {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 1rem;
+}
+
+@media (max-width: 900px) {
+  .docs-shell {
+    grid-template-columns: 1fr;
+  }
+}
+
+.docs-sidebar {
+  position: sticky;
+  top: 84px;
+  align-self: start;
+}
+
+.docs-nav {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.docs-nav-link {
+  text-decoration: none;
+  color: #374151;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 0.45rem 0.55rem;
+  font-size: 0.85rem;
+  background: #fff;
+}
+
+.docs-content {
+  min-width: 0;
+}
+
+.article-shell {
+  max-width: 900px;
+}
+
+.article-card h1,
+.article-card h2,
+.article-card h3 {
+  color: #111827;
+}
+
+.article-card p,
+.article-card li {
+  color: #4b5563;
+  line-height: 1.65;
+}
+
+.article-card pre {
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 0.8rem;
+  overflow-x: auto;
+}
+
+.heartbeat-line {
+  margin-top: 0.7rem;
+  height: 10px;
+  border-radius: 999px;
+  background: #e5e7eb;
+  overflow: hidden;
+}
+
+.heartbeat-line span {
+  display: block;
+  height: 100%;
+  width: 30%;
+  background: linear-gradient(90deg, #111827, #64748b);
+  animation: heartbeat-slide 2s ease-in-out infinite;
+}
+
+@keyframes heartbeat-slide {
+  0% { transform: translateX(-120%); }
+  50% { transform: translateX(220%); }
+  100% { transform: translateX(420%); }
+}
+
 .compare-table {
   width: 100%;
   border-collapse: collapse;

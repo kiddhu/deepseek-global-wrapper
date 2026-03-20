@@ -9,6 +9,9 @@ export function SiteFooter() {
           support@seekapi.ai
         </a>
         <div className="footer-links">
+          <a className="footer-meta footer-link" href="/blog">
+            Network Insights
+          </a>
           <a className="footer-meta footer-link" href="/terms">
             Terms
           </a>
