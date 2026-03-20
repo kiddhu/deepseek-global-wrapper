@@ -1,0 +1,40 @@
+[1] SHOW HN: A usage circuit breaker for Cloudflare Workers (热度: 17)
+👤 作者: ethan_zhao
+🔗 https://news.ycombinator.com/item?id=47322794
+
+[2] LightReach: OpenAI gateway for Cursor(prompt compression+cost-aware routing) (热度: 2)
+👤 作者: lightreach7
+🔗 https://news.ycombinator.com/item?id=47305547
+
+[3] Show HN: Unread, turns your unread newsletters into a daily podcast (热度: 2)
+👤 作者: benfosterdev
+🔗 https://app.unread.live
+
+[4] Show HN: Sokuji – Open-source speech translator with on-device AI WASM/WebGPU (热度: 2)
+👤 作者: jiangzhuo
+🔗 https://github.com/kizuna-ai-lab/sokuji
+
+[5] Show HN: I parsed 10 years of Japanese corporate filings into an API (热度: 4)
+👤 作者: dahaleonkar
+🔗 https://axiora.dev/en
+
+[6] Show HN: Omni – Open-source workplace search and chat, built on Postgres (热度: 176)
+👤 作者: prvnsmpth
+🔗 https://github.com/getomnico/omni
+
+[7] Show HN: OpenAI to Buy Babuger.com for $1B? (Just Kidding, I Built It) (热度: 1)
+👤 作者: lyuata
+🔗 https://news.ycombinator.com/item?id=47184769
+
+[8] Show HN: Context Harness – Local first context engine for AI tools (热度: 2)
+👤 作者: __parallaxis
+🔗 https://github.com/parallax-labs/context-harness
+
+[9] Show HN: Attest – Test AI agents with 8-layer graduated assertions (热度: 1)
+👤 作者: tommathews
+🔗 https://news.ycombinator.com/item?id=47122431
+
+[10] Show HN: BestClaw Simple OpenClaw/MoltBot for non tech people (热度: 2)
+👤 作者: nihey
+🔗 https://bestclaw.host/
+

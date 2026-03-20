@@ -1,0 +1,9 @@
+venv/
+.serena/
+__pycache__/
+*.log
+*.pyc
+.env
+github_token.txt
+.git_bak/
+*.save
