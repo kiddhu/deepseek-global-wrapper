@@ -15,6 +15,9 @@ export function SiteFooter() {
           <a className="footer-meta footer-link" href="/refund">
             Refund
           </a>
+          <a className="footer-meta footer-link" href="/privacy">
+            Privacy
+          </a>
         </div>
       </div>
     </footer>

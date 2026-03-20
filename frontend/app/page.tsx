@@ -76,20 +76,6 @@ export default function HomePage() {
             <p className="hero-subtitle" style={{ marginTop: "-0.5rem", marginBottom: "0.75rem" }}>
               Trusted by teams building on GitHub, Vercel, and Cloudflare.
             </p>
-            <div className="trusted-logos" aria-hidden="true">
-              <svg viewBox="0 0 64 24" className="logo-placeholder">
-                <path d="M8 12h48" stroke="#9ca3af" strokeWidth="2" />
-              </svg>
-              <svg viewBox="0 0 64 24" className="logo-placeholder">
-                <path d="M10 7h44v10H10z" fill="none" stroke="#9ca3af" strokeWidth="2" />
-              </svg>
-              <svg viewBox="0 0 64 24" className="logo-placeholder">
-                <path d="M8 16l8-8 8 8 8-8 8 8 8-8" fill="none" stroke="#9ca3af" strokeWidth="2" />
-              </svg>
-              <svg viewBox="0 0 64 24" className="logo-placeholder">
-                <path d="M8 8h48M8 16h36" stroke="#9ca3af" strokeWidth="2" />
-              </svg>
-            </div>
           </section>
 
           <section className="card-grid" aria-label="Core Components">

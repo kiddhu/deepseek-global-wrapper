@@ -14,12 +14,8 @@ export function SiteHeader() {
   return (
     <header className="site-header">
       <div className="site-header-inner">
-        <a href="/" className="site-brand" aria-label="SeekAPI Home">
-          <img
-            src="https://github.com/kiddhu/seekapi-assets/blob/main/logo5.png?raw=true"
-            alt="SeekAPI"
-            className="site-logo"
-          />
+        <a href="/" className="site-title" aria-label="SeekAPI Home">
+          SeekAPI
         </a>
         <nav className="site-nav" aria-label="Primary">
           {NAV_ITEMS.map((item) => (
