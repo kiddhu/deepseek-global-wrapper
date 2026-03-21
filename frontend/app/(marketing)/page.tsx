@@ -2,8 +2,8 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { SiteFooter } from "./components/site-footer";
-import { SiteHeader } from "./components/site-header";
+import { SiteFooter } from "../components/site-footer";
+import { SiteHeader } from "../components/site-header";
 
 const PYTHON_SAMPLE = `from openai import OpenAI
 
