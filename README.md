@@ -1,5 +1,7 @@
 # SeekAPI.ai: Official Global DeepSeek Gateway
 
+**Operator:** SeekAPI Technology Limited (Hong Kong SAR)
+
 SeekAPI.ai is a cost-effective, globally accessible gateway to DeepSeek reasoning models (R1) and DeepSeek V3. It provides an OpenAI-compatible Chat Completions interface so you can integrate DeepSeek with minimal code changes.
 
 ## Core Value
@@ -66,4 +68,3 @@ print(completion.choices[0].message.content)
 - `github_token.txt` is ignored by Git by default (`.gitignore`), and should not be present in the repository.
 
 <!-- Trigger Build: 2026-03-20 21:05 -->
-

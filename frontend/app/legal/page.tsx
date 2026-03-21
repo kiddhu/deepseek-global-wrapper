@@ -4,7 +4,7 @@ import { SiteHeader } from "../components/site-header";
 
 export const metadata: Metadata = {
   title: "Legal | SeekAPI.ai",
-  description: "Terms, privacy, and refund policies for SeekAPI International Limited.",
+  description: "Terms, privacy, and refund policies for SeekAPI Technology Limited.",
 };
 
 export default function LegalPage() {

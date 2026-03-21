@@ -19,7 +19,7 @@ export default function RefundPage() {
           <h1 className="hero-title">Refund Policy</h1>
           <article className="legal-doc card" style={{ padding: "1.75rem 1.5rem 2rem" }}>
             <p className="legal-lead">
-              This Refund Policy explains how <strong>SeekAPI International Limited</strong> handles
+              This Refund Policy explains how <strong>SeekAPI Technology Limited</strong> handles
               refund requests for SeekAPI.ai prepaid balances and qualifying charges.
             </p>
             <p className="legal-meta">Effective date: March 21, 2026</p>

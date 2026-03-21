@@ -5,8 +5,9 @@ export function SiteFooter() {
       <div className="footer-inner footer-three-col">
         <div className="footer-col footer-col-address">
           <p className="footer-address">
-            SeekAPI International Limited · Room P11, Flat 2C, 2/F, Hung To Ctr., 94-96 How Ming
-            St., Kwun Tong, Kowloon, Hong Kong
+            <span className="footer-company">SeekAPI Technology Limited</span>
+            <br />
+            Room P11, Flat 2C, 2/F, Hung To Ctr., 94-96 How Ming St., Kwun Tong, Kowloon, Hong Kong
           </p>
         </div>
         <nav className="footer-col footer-col-links" aria-label="Legal and blog">

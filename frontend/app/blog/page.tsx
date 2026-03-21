@@ -22,16 +22,16 @@ export default function BlogPage() {
           <h1 className="hero-title">Network Insights &amp; Engineering Blog</h1>
           <p className="hero-subtitle">
             Technical notes for builders operating cost-efficient, OpenAI-compatible inference at
-            scale. Posts are sourced from the repository <code>/blog</code> directory.
+            scale. Posts load from <code>frontend/content/*.md</code> (bundled with the Vercel
+            deployment).
           </p>
           <section className="card-grid" aria-label="Blog posts">
             {posts.length === 0 ? (
               <article className="card">
                 <h2 className="card-title">No posts yet</h2>
                 <p className="card-body">
-                  Add markdown files to the monorepo <code>blog/</code> folder (next to{" "}
-                  <code>frontend/</code>). This page lists every <code>*.md</code> file
-                  automatically.
+                  Add markdown files under <code>frontend/content/</code>. Each <code>*.md</code>{" "}
+                  file becomes a blog article automatically.
                 </p>
               </article>
             ) : null}

@@ -5,7 +5,7 @@ import { SiteHeader } from "../components/site-header";
 export const metadata: Metadata = {
   title: "Terms of Service | SeekAPI.ai",
   description:
-    "SaaS and API terms for SeekAPI International Limited (Hong Kong). Usage-based billing, acceptable use, and API rules.",
+    "SaaS and API terms for SeekAPI Technology Limited (Hong Kong). Usage-based billing, acceptable use, and API rules.",
   keywords: ["SeekAPI terms", "API terms of service", "Hong Kong SaaS agreement"],
 };
 
@@ -21,7 +21,7 @@ export default function TermsPage() {
             <p className="legal-lead">
               These Terms of Service (“Terms”) govern access to and use of the SeekAPI.ai platform,
               API gateway, dashboard, and related services (collectively, the “Services”) provided
-              by <strong>SeekAPI International Limited</strong>, a company incorporated in Hong Kong
+              by <strong>SeekAPI Technology Limited</strong>, a company incorporated in Hong Kong
               (“SeekAPI”, “we”, “us”).
             </p>
             <p className="legal-meta">

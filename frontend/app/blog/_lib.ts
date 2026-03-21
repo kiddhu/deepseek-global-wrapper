@@ -10,7 +10,8 @@ export type BlogPost = {
   content: string;
 };
 
-const BLOG_DIR = path.resolve(process.cwd(), "..", "blog");
+// Vercel builds with cwd = frontend/ — keep posts inside the deploy tree.
+const BLOG_DIR = path.join(process.cwd(), "content");
 
 function safeReadBlogFiles(): string[] {
   if (!fs.existsSync(BLOG_DIR)) {

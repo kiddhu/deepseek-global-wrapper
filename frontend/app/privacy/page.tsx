@@ -5,7 +5,7 @@ import { SiteHeader } from "../components/site-header";
 export const metadata: Metadata = {
   title: "Privacy Policy | SeekAPI.ai",
   description:
-    "How SeekAPI International Limited handles personal data, billing telemetry, and API traffic metadata.",
+    "How SeekAPI Technology Limited handles personal data, billing telemetry, and API traffic metadata.",
   keywords: ["SeekAPI privacy", "API privacy policy", "data processing Hong Kong"],
 };
 
@@ -19,7 +19,7 @@ export default function PrivacyPage() {
           <h1 className="hero-title">Privacy Policy</h1>
           <article className="legal-doc card" style={{ padding: "1.75rem 1.5rem 2rem" }}>
             <p className="legal-lead">
-              This Privacy Policy describes how <strong>SeekAPI International Limited</strong>{" "}
+              This Privacy Policy describes how <strong>SeekAPI Technology Limited</strong>{" "}
               (“SeekAPI”, “we”) collects, uses, and shares information when you use SeekAPI.ai and
               related services (the “Services”).
             </p>

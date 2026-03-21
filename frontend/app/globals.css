@@ -407,11 +407,12 @@ body {
   border: 0;
 }
 
+/* Site footer: black-gold (.footer class — avoid bare `footer {}` so third-party `footer{display:none}` injections miss us) */
 .footer {
-  border-top: 1px solid #e5e7eb;
-  background: #fafafa;
-  color: #4b5563;
-  padding: 1.25rem 24px 1.5rem;
+  border-top: 1px solid #1e293b;
+  background: #020617;
+  color: #e5e7eb;
+  padding: 1.35rem 24px 1.6rem;
 }
 
 .footer-inner {
@@ -437,11 +438,21 @@ body {
   }
 }
 
+.footer-company {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #d4af37;
+  margin-bottom: 0.35rem;
+}
+
 .footer-address {
   margin: 0;
   font-size: 0.75rem;
   line-height: 1.55;
-  color: #6b7280;
+  color: #9ca3af;
   max-width: 22rem;
 }
 
@@ -477,6 +488,15 @@ body {
 
 .footer-link-min:hover {
   color: #111827;
+  text-decoration: underline;
+}
+
+.footer .footer-link-min {
+  color: #d4af37;
+}
+
+.footer .footer-link-min:hover {
+  color: #f5e6a3;
   text-decoration: underline;
 }
 
@@ -523,6 +543,15 @@ body {
   font-size: 0.8rem;
   color: #6b7280;
   margin-bottom: 1.5rem;
+}
+
+.legal-doc a {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
+.legal-doc a:hover {
+  color: #1d4ed8;
 }
 
 /* Status: healthy lane bars */
