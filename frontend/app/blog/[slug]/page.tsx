@@ -2,18 +2,20 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { SiteFooter } from "../../components/site-footer";
 import { SiteHeader } from "../../components/site-header";
-import { getAllPosts, getPostBySlug, markdownToHtml } from "../_lib";
+import { getAllLocalPosts, getPostBySlug, markdownToHtml } from "../_lib";
+
+export const revalidate = 120;
 
 type Params = { slug: string };
 type PageProps = { params: Promise<Params> };
 
 export function generateStaticParams() {
-  return getAllPosts().map((post) => ({ slug: post.slug }));
+  return getAllLocalPosts().map((post) => ({ slug: post.slug }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = await getPostBySlug(slug);
   if (!post) {
     return { title: "Article Not Found" };
   }
@@ -25,7 +27,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function BlogArticlePage({ params }: PageProps) {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = await getPostBySlug(slug);
   if (!post) {
     notFound();
   }
@@ -67,6 +69,7 @@ export default async function BlogArticlePage({ params }: PageProps) {
           <h1 className="hero-title">{post.title}</h1>
           <p className="hero-subtitle">
             {post.lang.toUpperCase()} · {post.date || "Undated"}
+            {post.source === "supabase" ? " · Supabase" : ""}
           </p>
           <article
             className="card article-card"

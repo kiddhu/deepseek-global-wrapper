@@ -13,6 +13,7 @@ AUTH_TOKEN = os.environ.get("DASHBOARD_TOKEN", "").strip()
 BLOG_PATH = "/root/OpenClaw/blog"
 LOG_DIR = "/root/OpenClaw/logs"
 AUDIT_PATH = f"{LOG_DIR}/audit.log"
+HEARTBEAT_PATH = f"{LOG_DIR}/heartbeat.log"
 
 app = Flask(__name__)
 
@@ -51,6 +52,18 @@ def hk_oneapi_online() -> bool:
         sock.close()
 
 
+def read_heartbeat_tail(max_lines: int = 14) -> str:
+    if not os.path.exists(HEARTBEAT_PATH):
+        return "No heartbeat log yet. Run scripts/keep_alive.py on HQ (writes logs/heartbeat.log)."
+    try:
+        with open(HEARTBEAT_PATH, "r", encoding="utf-8") as f:
+            lines = f.readlines()
+        tail = lines[-max_lines:] if len(lines) > max_lines else lines
+        return "".join(tail).strip() or "(empty log)"
+    except OSError:
+        return "(could not read heartbeat log)"
+
+
 def today_agent_memory_count() -> int:
     try:
         conn = get_db_connection()
@@ -82,6 +95,7 @@ def index() -> Response:
     leads, latest_lead = parse_leads_from_audit()
     hk_status = "ONLINE" if hk_oneapi_online() else "OFFLINE"
     traffic = today_agent_memory_count()
+    heartbeat_tail = read_heartbeat_tail()
 
     html_doc = f"""
     <html>
@@ -141,6 +155,8 @@ def index() -> Response:
         </div>
         <h3>Latest Lead Event</h3>
         <div class="card mono">{html.escape(latest_lead)}</div>
+        <h3 style="margin-top:22px;">Keep-alive heartbeat (dash.seekapi.ai + HQ)</h3>
+        <div class="card mono">{html.escape(heartbeat_tail)}</div>
       </div>
     </body>
     </html>

@@ -8,10 +8,20 @@ export type BlogPost = {
   lang: string;
   description: string;
   content: string;
+  source?: "local" | "supabase";
 };
 
-// Vercel builds with cwd = frontend/ — keep posts inside the deploy tree.
 const BLOG_DIR = path.join(process.cwd(), "content");
+
+type RawRow = {
+  slug?: string;
+  title?: string;
+  body_md?: string;
+  content?: string;
+  description?: string | null;
+  lang?: string | null;
+  published_at?: string | null;
+};
 
 function safeReadBlogFiles(): string[] {
   if (!fs.existsSync(BLOG_DIR)) {
@@ -89,9 +99,10 @@ function escapeHtml(value: string): string {
     .replace(/'/g, "&#39;");
 }
 
-export function getAllPosts(): BlogPost[] {
+/** Markdown files under frontend/content — sync, safe for generateStaticParams at build time */
+export function getAllLocalPosts(): BlogPost[] {
   const files = safeReadBlogFiles();
-  const posts = files
+  return files
     .map((file) => {
       const fullPath = path.join(BLOG_DIR, file);
       const raw = fs.readFileSync(fullPath, "utf-8");
@@ -105,13 +116,13 @@ export function getAllPosts(): BlogPost[] {
         description:
           (meta.description && meta.description.trim()) || body.slice(0, 180).replace(/\n/g, " "),
         content: body,
+        source: "local" as const,
       };
     })
     .toSorted((a, b) => (a.date < b.date ? 1 : -1));
-  return posts;
 }
 
-export function getPostBySlug(slug: string): BlogPost | null {
+export function getLocalPostBySlug(slug: string): BlogPost | null {
   const safeSlug = slug.replace(/[^a-zA-Z0-9._-]/g, "");
   const fullPath = path.join(BLOG_DIR, `${safeSlug}.md`);
   if (!fs.existsSync(fullPath)) {
@@ -127,5 +138,127 @@ export function getPostBySlug(slug: string): BlogPost | null {
     description:
       (meta.description && meta.description.trim()) || body.slice(0, 180).replace(/\n/g, " "),
     content: body,
+    source: "local",
   };
+}
+
+function supabaseConfigured(): boolean {
+  const base = process.env.SUPABASE_URL?.trim();
+  const key =
+    process.env.SUPABASE_SERVICE_ROLE_KEY?.trim() || process.env.SUPABASE_ANON_KEY?.trim();
+  return Boolean(base && key);
+}
+
+function rowToPost(row: RawRow): BlogPost | null {
+  if (!row.slug) {
+    return null;
+  }
+  const body = (row.body_md ?? row.content ?? "").trim();
+  const description =
+    (typeof row.description === "string" && row.description.trim()) ||
+    body.slice(0, 180).replace(/\n/g, " ");
+  return {
+    slug: String(row.slug),
+    title: String(row.title || row.slug),
+    date: row.published_at ? String(row.published_at) : "",
+    lang: row.lang ? String(row.lang) : "en",
+    description,
+    content: body,
+    source: "supabase",
+  };
+}
+
+/** Fetch published rows from Supabase PostgREST (table default: blog_posts). */
+async function fetchSupabasePosts(): Promise<BlogPost[]> {
+  if (!supabaseConfigured()) {
+    return [];
+  }
+  const baseUrl = process.env.SUPABASE_URL!.replace(/\/$/, "");
+  const key =
+    process.env.SUPABASE_SERVICE_ROLE_KEY?.trim() || process.env.SUPABASE_ANON_KEY!.trim();
+  const table = process.env.SUPABASE_BLOG_TABLE?.trim() || "blog_posts";
+  const url = `${baseUrl}/rest/v1/${table}?select=slug,title,body_md,content,description,lang,published_at&order=published_at.desc`;
+  try {
+    const res = await fetch(url, {
+      headers: {
+        apikey: key,
+        Authorization: `Bearer ${key}`,
+        Accept: "application/json",
+      },
+      next: { revalidate: 120 },
+    });
+    if (!res.ok) {
+      return [];
+    }
+    const rows = (await res.json()) as RawRow[];
+    if (!Array.isArray(rows)) {
+      return [];
+    }
+    return rows.map(rowToPost).filter((p): p is BlogPost => p !== null);
+  } catch {
+    return [];
+  }
+}
+
+async function fetchSupabasePostBySlug(slug: string): Promise<BlogPost | null> {
+  if (!supabaseConfigured()) {
+    return null;
+  }
+  const safe = slug.replace(/[^a-zA-Z0-9._-]/g, "");
+  if (!safe) {
+    return null;
+  }
+  const baseUrl = process.env.SUPABASE_URL!.replace(/\/$/, "");
+  const key =
+    process.env.SUPABASE_SERVICE_ROLE_KEY?.trim() || process.env.SUPABASE_ANON_KEY!.trim();
+  const table = process.env.SUPABASE_BLOG_TABLE?.trim() || "blog_posts";
+  const filter = encodeURIComponent(`slug.eq.${safe}`);
+  const url = `${baseUrl}/rest/v1/${table}?select=slug,title,body_md,content,description,lang,published_at&${filter}`;
+  try {
+    const res = await fetch(url, {
+      headers: {
+        apikey: key,
+        Authorization: `Bearer ${key}`,
+        Accept: "application/json",
+      },
+      next: { revalidate: 120 },
+    });
+    if (!res.ok) {
+      return null;
+    }
+    const rows = (await res.json()) as RawRow[];
+    if (!Array.isArray(rows) || rows.length === 0) {
+      return null;
+    }
+    return rowToPost(rows[0]);
+  } catch {
+    return null;
+  }
+}
+
+function mergePosts(local: BlogPost[], remote: BlogPost[]): BlogPost[] {
+  const map = new Map<string, BlogPost>();
+  for (const p of local) {
+    map.set(p.slug, p);
+  }
+  for (const p of remote) {
+    map.set(p.slug, p);
+  }
+  return [...map.values()].toSorted((a, b) => (a.date < b.date ? 1 : -1));
+}
+
+/** All posts: frontend/content/*.md plus Supabase table when SUPABASE_URL + key are set (remote wins on slug collision). */
+export async function getAllPosts(): Promise<BlogPost[]> {
+  const local = getAllLocalPosts();
+  const remote = await fetchSupabasePosts();
+  return mergePosts(local, remote);
+}
+
+export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
+  // Same precedence as mergePosts: Supabase row overrides local file when slug matches.
+  const remote = await fetchSupabasePostBySlug(slug);
+  if (remote) {
+    return remote;
+  }
+  return getLocalPostBySlug(slug);
 }
