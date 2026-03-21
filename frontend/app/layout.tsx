@@ -7,9 +7,10 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 export const metadata: Metadata = {
   title: "SeekAPI.ai | Global DeepSeek Cost Gateway",
   description:
-    "SeekAPI.ai is an OpenAI-compatible gateway for DeepSeek R1/V3 with global routing and lower inference cost.",
+    "SeekAPI.ai is an OpenAI-compatible gateway for DeepSeek R1/V3 with global routing and lower inference cost. Affiliate program: partner revenue-share for early promoters — apply via support@seekapi.ai (pilot waitlist).",
   keywords: [
     "SeekAPI",
+    "SeekAPI affiliate program",
     "DeepSeek R1",
     "DeepSeek V3",
     "OpenAI compatible API",

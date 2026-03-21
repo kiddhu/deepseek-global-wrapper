@@ -37,11 +37,11 @@ function convertToSeekApi(code: string) {
 }
 
 export default function HomePage() {
-  const [tokensM, setTokensM] = useState(120);
+  const [costScale, setCostScale] = useState(100);
   const [lang, setLang] = useState<"python" | "node">("python");
   const [inputCode, setInputCode] = useState(PYTHON_SAMPLE);
-  const openAICost = useMemo(() => tokensM * 10, [tokensM]);
-  const seekAPICost = useMemo(() => Number((openAICost * 0.12).toFixed(2)), [openAICost]);
+  const openAIExpense = useMemo(() => Math.round(20 * costScale), [costScale]);
+  const seekAPIExpense = useMemo(() => Math.round(2 * costScale), [costScale]);
   const transformedCode = useMemo(() => convertToSeekApi(inputCode), [inputCode]);
 
   return (
@@ -55,6 +55,31 @@ export default function HomePage() {
               Save 90% on AI API Costs.
             </h1>
             <p className="hero-subtitle">100% OpenAI Compatible. Switch in 30 seconds.</p>
+
+            <div className="hero-cost-panel" aria-label="Monthly expense comparison">
+              <div className="hero-cost-row">
+                <div className="hero-cost-col">
+                  <span className="hero-cost-label">OpenAI Expense</span>
+                  <span className="hero-cost-amount">${openAIExpense.toLocaleString()}</span>
+                </div>
+                <div className="hero-cost-col hero-cost-col--seek">
+                  <span className="hero-cost-label">SeekAPI Expense</span>
+                  <span className="hero-cost-amount">${seekAPIExpense.toLocaleString()}</span>
+                </div>
+              </div>
+              <input
+                type="range"
+                min={1}
+                max={100}
+                value={costScale}
+                onChange={(e) => setCostScale(Number(e.target.value))}
+                className="range-slider hero-cost-slider"
+                aria-label="Adjust comparable monthly spend scenario"
+              />
+              <p className="hero-capital-tagline">
+                Stop Overpaying. Redirect your capital to growth.
+              </p>
+            </div>
 
             <div className="hero-badges">
               <span className="badge">DeepSeek R1 / V3 Gateway</span>
@@ -78,26 +103,7 @@ export default function HomePage() {
             </p>
           </section>
 
-          <section className="card-grid" aria-label="Core Components">
-            <article className="card">
-              <h2 className="card-title">Interactive Calculator</h2>
-              <p className="card-body">
-                Monthly usage: <strong>{tokensM}M</strong> tokens
-                <br />
-                OpenAI Cost: <strong>${openAICost.toLocaleString()}</strong>
-                <br />
-                SeekAPI Cost: <strong>${seekAPICost.toLocaleString()}</strong>
-              </p>
-              <input
-                type="range"
-                min={1}
-                max={1000}
-                value={tokensM}
-                onChange={(e) => setTokensM(Number(e.target.value))}
-                className="range-slider"
-                aria-label="Monthly token usage in millions"
-              />
-            </article>
+          <section className="card-grid card-grid--two" aria-label="Core Components">
             <article className="card">
               <h2 className="card-title">Real-time Arbitrage Monitor</h2>
               <p className="card-body">
