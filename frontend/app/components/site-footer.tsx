@@ -1,6 +1,7 @@
+// Use div+role instead of <footer>: some injections use `footer { display:none }` and hide the whole bar.
 export function SiteFooter() {
   return (
-    <footer className="footer">
+    <div className="footer" role="contentinfo" aria-label="Site footer">
       <div className="footer-inner">
         <span className="footer-brand">
           Room P11, Flat 2C, 2/F, Hung To Ctr., 94-96 How Ming St., Kwun Tong, Kowloon, HK
@@ -23,6 +24,6 @@ export function SiteFooter() {
           </a>
         </div>
       </div>
-    </footer>
+    </div>
   );
 }
