@@ -5,82 +5,59 @@ import { SiteHeader } from "../components/site-header";
 export const metadata: Metadata = {
   title: "Refund Policy | SeekAPI.ai",
   description:
-    "7-Day Money Back Guarantee for unused balance. Refunds processed within 3-5 business days where eligible.",
-  keywords: ["SeekAPI refund", "money back guarantee", "unused balance refund"],
+    "Refund policy for SeekAPI Technology Limited. 7-day money back on unused balance; processing 3–5 business days.",
+  robots: { index: true, follow: true },
 };
 
 export default function RefundPage() {
   return (
     <div className="page-shell">
       <SiteHeader />
-      <main className="page-content">
-        <div className="container">
-          <p className="hero-eyebrow">LEGAL</p>
-          <h1 className="hero-title">Refund Policy</h1>
-          <article className="legal-doc card" style={{ padding: "1.75rem 1.5rem 2rem" }}>
-            <p className="legal-lead">
-              This Refund Policy explains how <strong>SeekAPI Technology Limited</strong> handles
-              refund requests for SeekAPI.ai prepaid balances and qualifying charges.
-            </p>
-            <p className="legal-meta">Effective date: March 21, 2026</p>
+      <main className="page-content bg-white">
+        <div className="legal-refund-frame">
+          <h1>Refund Policy</h1>
 
-            <h2>7-Day Money Back Guarantee (unused balance)</h2>
+          <section className="legal-refund-highlight" aria-labelledby="guarantee-heading">
+            <h2 id="guarantee-heading">7-Day Ironclad Money Back Guarantee</h2>
             <p>
-              If you are a new paying customer and request a refund within{" "}
-              <strong>seven (7) calendar days</strong> of your initial qualifying purchase, we will
-              refund the <strong>unused portion</strong> of your prepaid balance or eligible fees,
-              subject to verification and the exclusions below.
+              We provide a 100% refund of the UNUSED BALANCE to any user within seven (7) calendar
+              days of the initial purchase date, no questions asked.
             </p>
-            <ul>
-              <li>
-                <strong>Unused balance</strong> means amounts not yet consumed as usage credits at
-                the time we approve the request.
-              </li>
-              <li>
-                Usage that has already been metered and applied to your account is generally not
-                refundable, except where required by law or explicitly agreed in writing.
-              </li>
-            </ul>
+          </section>
 
-            <h2>Processing timeline</h2>
-            <p>
-              Approved refunds are typically initiated within{" "}
-              <strong>three (3) to five (5) business days</strong> after approval. Settlement to
-              your original payment method may take additional time depending on banks, card
-              networks, or payment processors.
-            </p>
+          <h3>1. Eligibility Criteria</h3>
+          <ul>
+            <li>Refunds only apply to the current remaining credit balance.</li>
+            <li>
+              Used tokens are non-refundable under any circumstances as the compute resources have
+              been physically consumed.
+            </li>
+            <li>
+              Promotion-based credits or bonus balances hold no cash value and are strictly
+              non-refundable.
+            </li>
+          </ul>
 
-            <h2>How to request a refund</h2>
-            <p>
-              Email{" "}
-              <a href="mailto:support@seekapi.ai" className="footer-link-min">
-                support@seekapi.ai
-              </a>{" "}
-              from your registered account email and include: account identifier, date of purchase,
-              transaction references, and a brief description of the issue. We may request
-              additional information to prevent fraud and confirm eligibility.
-            </p>
+          <h3>2. Refund Procedure</h3>
+          <p>
+            All refund requests must be initiated via email to{" "}
+            <a className="legal-mail" href="mailto:support@seekapi.ai">
+              support@seekapi.ai
+            </a>
+            . Our financial department will verify the unused balance and process the refund via
+            Stripe or the original payment method within 3 to 5 business days.
+          </p>
 
-            <h2>Non-refundable or limited cases</h2>
-            <ul>
-              <li>Fees for usage already consumed or invoiced under contract terms.</li>
-              <li>Accounts terminated for abuse, fraud, or violation of our Terms of Service.</li>
-              <li>Third-party charges (for example, bank fees, FX spreads) outside our control.</li>
-              <li>Promotional credits labeled as non-refundable at grant time.</li>
-            </ul>
+          <h3>3. Finality of Agreement</h3>
+          <p>
+            Upon the successful processing of a refund, the associated API Key and account access
+            will be terminated. This policy is designed to maintain compliance with Stripe&apos;s
+            global consumer protection standards and Hong Kong consumer law.
+          </p>
 
-            <h2>Chargebacks</h2>
-            <p>
-              Please contact us before initiating a chargeback where possible. Chargebacks may
-              result in account suspension pending resolution.
-            </p>
-
-            <h2>Changes</h2>
-            <p>
-              We may update this policy from time to time. The effective date at the top will
-              reflect the latest version.
-            </p>
-          </article>
+          <p className="legal-copy-footer">
+            Copyright © 2026 SeekAPI Technology Limited. All rights reserved.
+          </p>
         </div>
       </main>
       <SiteFooter />

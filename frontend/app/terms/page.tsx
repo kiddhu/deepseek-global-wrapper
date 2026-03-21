@@ -5,137 +5,66 @@ import { SiteHeader } from "../components/site-header";
 export const metadata: Metadata = {
   title: "Terms of Service | SeekAPI.ai",
   description:
-    "SaaS and API terms for SeekAPI Technology Limited (Hong Kong). Usage-based billing, acceptable use, and API rules.",
-  keywords: ["SeekAPI terms", "API terms of service", "Hong Kong SaaS agreement"],
+    "Terms of Service for SeekAPI Technology Limited. Gateway-only role, limitation of liability, indemnity, and Hong Kong SAR governing law.",
+  robots: { index: true, follow: true },
 };
 
 export default function TermsPage() {
   return (
     <div className="page-shell">
       <SiteHeader />
-      <main className="page-content">
-        <div className="container">
-          <p className="hero-eyebrow">LEGAL</p>
-          <h1 className="hero-title">Terms of Service</h1>
-          <article className="legal-doc card" style={{ padding: "1.75rem 1.5rem 2rem" }}>
-            <p className="legal-lead">
-              These Terms of Service (“Terms”) govern access to and use of the SeekAPI.ai platform,
-              API gateway, dashboard, and related services (collectively, the “Services”) provided
-              by <strong>SeekAPI Technology Limited</strong>, a company incorporated in Hong Kong
-              (“SeekAPI”, “we”, “us”).
-            </p>
-            <p className="legal-meta">
-              Effective date: March 21, 2026 · Governing law: Hong Kong SAR
-            </p>
+      <main className="page-content bg-white">
+        <article className="legal-prose" lang="en">
+          <h1>Terms of Service</h1>
+          <p className="legal-effective">Effective Date: March 21, 2026</p>
 
-            <h2>1. Agreement</h2>
+          <section className="legal-absolute-box" aria-labelledby="absolute-disclaimer">
+            <h2 id="absolute-disclaimer">Section 0: Absolute Disclaimer</h2>
             <p>
-              By creating an account, obtaining an API key, or otherwise using the Services, you
-              (“Customer”, “you”) agree to these Terms and our Privacy Policy. If you use the
-              Services on behalf of an organization, you represent that you have authority to bind
-              that organization.
+              THIS SERVICE IS PROVIDED &quot;AS IS&quot; WITHOUT WARRANTY OF ANY KIND. SEEKAPI
+              TECHNOLOGY LIMITED (HEREINAFTER &quot;THE COMPANY&quot;) DISCLAIMS ALL WARRANTIES,
+              EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY IMPLIED WARRANTIES OF
+              MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.
             </p>
+          </section>
 
-            <h2>2. The Services</h2>
-            <p>
-              SeekAPI provides an OpenAI-compatible API gateway and related tooling to route
-              inference requests to configured model providers. Features, models, regions, and
-              limits may change as we improve reliability, security, and cost efficiency. We may
-              suspend or restrict access to comply with law or to protect the platform.
-            </p>
+          <h3>1. Nature of Service</h3>
+          <p>
+            SeekAPI acts solely as a technical gateway (bridge) facilitating requests between the
+            user and third-party AI model providers (including but not limited to DeepSeek). The
+            Company does not generate content, nor does it control the stability, accuracy, or
+            legality of the underlying models.
+          </p>
 
-            <h2>3. Accounts &amp; API keys</h2>
-            <ul>
-              <li>
-                You are responsible for safeguarding API keys, credentials, and integration secrets.
-              </li>
-              <li>
-                You must promptly notify us of unauthorized use or suspected compromise of your
-                account.
-              </li>
-              <li>
-                You may not share credentials in a way that circumvents billing, quotas, or security
-                controls.
-              </li>
-            </ul>
+          <h3>2. Limitation of Liability</h3>
+          <p>
+            TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL THE COMPANY, ITS
+            DIRECTORS, OR EMPLOYEES BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, OR
+            CONSEQUENTIAL DAMAGES, INCLUDING BUT NOT LIMITED TO LOSS OF PROFITS, DATA, OR USE, EVEN
+            IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. THE COMPANY&apos;S TOTAL AGGREGATE
+            LIABILITY SHALL NOT EXCEED THE TOTAL AMOUNT PAID BY THE USER TO THE COMPANY IN THE THREE
+            (3) MONTHS PRECEDING THE CLAIM.
+          </p>
 
-            <h2>4. API usage rules</h2>
-            <ul>
-              <li>
-                You will use the Services only for lawful purposes and in compliance with applicable
-                laws and regulations.
-              </li>
-              <li>
-                You will not probe, scan, or attack our systems, upstream providers, or other
-                customers; attempt unauthorized access; or interfere with service integrity
-                (including DDoS, credential stuffing, or exploitation of vulnerabilities).
-              </li>
-              <li>
-                You will not use the Services to generate, distribute, or facilitate illegal
-                content, malware, fraud, harassment, or rights violations.
-              </li>
-              <li>
-                You remain responsible for your application logic, prompts, outputs, and downstream
-                use of model responses.
-              </li>
-            </ul>
+          <h3>3. User Indemnification</h3>
+          <p>
+            User agrees to indemnify and hold the Company harmless from any and all claims, damages,
+            and legal fees arising from the user&apos;s use of the API, including the generation of
+            sensitive, illegal, or infringing content. The User accepts full legal responsibility
+            for any input and output processed through the gateway.
+          </p>
 
-            <h2>5. Usage-based billing</h2>
-            <p>
-              Unless otherwise agreed in writing, fees are based on measured usage (for example,
-              tokens processed, requests, or plan tiers published on our Pricing page). Usage
-              metrics recorded by our systems are generally decisive for billing disputes, subject
-              to reasonable verification. Taxes may apply where required.
-            </p>
+          <h3>4. Compliance with HKSAR Law</h3>
+          <p>
+            These terms shall be governed by and construed in accordance with the laws of the Hong
+            Kong Special Administrative Region. Any dispute arising under these terms shall be
+            subject to the exclusive jurisdiction of the courts of Hong Kong.
+          </p>
 
-            <h2>6. Service levels &amp; disclaimers</h2>
-            <p>
-              The Services are provided on an “as available” basis unless a separate SLA is
-              executed. We do not guarantee uninterrupted operation or error-free outputs from
-              underlying model providers. To the maximum extent permitted by law, we disclaim
-              implied warranties including merchantability and fitness for a particular purpose.
-            </p>
-
-            <h2>7. Limitation of liability</h2>
-            <p>
-              To the maximum extent permitted by law, SeekAPI’s aggregate liability arising out of
-              these Terms will not exceed the fees paid by you for the Services in the three (3)
-              months preceding the claim. We are not liable for indirect, incidental, special,
-              consequential, or punitive damages, or loss of profits, data, or goodwill, except
-              where liability cannot be excluded under applicable law.
-            </p>
-
-            <h2>8. Indemnity</h2>
-            <p>
-              You will defend and indemnify SeekAPI against third-party claims arising from your use
-              of the Services, your applications, your content, or your violation of these Terms or
-              applicable law.
-            </p>
-
-            <h2>9. Suspension &amp; termination</h2>
-            <p>
-              We may suspend or terminate access for breach, risk to the platform, non-payment, or
-              legal requirements. You may stop using the Services at any time. Provisions that by
-              nature should survive (fees owed, liability limits, indemnity, governing law) survive
-              termination.
-            </p>
-
-            <h2>10. Changes</h2>
-            <p>
-              We may update these Terms by posting a revised version and updating the effective
-              date. Continued use after changes become effective constitutes acceptance. Material
-              adverse changes will be communicated through reasonable channels where practicable.
-            </p>
-
-            <h2>11. Contact</h2>
-            <p>
-              Questions about these Terms:{" "}
-              <a href="mailto:support@seekapi.ai" className="footer-link-min">
-                support@seekapi.ai
-              </a>
-            </p>
-          </article>
-        </div>
+          <p className="legal-copy-footer">
+            Copyright © 2026 SeekAPI Technology Limited. All rights reserved.
+          </p>
+        </article>
       </main>
       <SiteFooter />
     </div>

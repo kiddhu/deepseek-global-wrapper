@@ -582,3 +582,174 @@ body {
   box-shadow: 0 0 0 1px rgb(22 163 74 / 0.2) inset;
 }
 
+/* Legal fortress: prose-equivalent typography (Tailwind Typography–style) on white */
+.legal-prose {
+  max-width: 56rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-bottom: 5rem;
+  color: #171717;
+  font-size: 1.0625rem;
+  line-height: 1.75;
+}
+
+.legal-prose h1 {
+  font-size: 2.25rem;
+  line-height: 1.15;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+  margin: 0 0 2rem;
+  color: #020617;
+}
+
+.legal-prose .legal-effective {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #6b7280;
+  margin: -1rem 0 2.5rem;
+}
+
+.legal-prose .legal-absolute-box {
+  margin: 0 0 3rem;
+  padding-left: 1.5rem;
+  border-left: 4px solid #000000;
+}
+
+.legal-prose .legal-absolute-box h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  font-style: italic;
+  text-transform: uppercase;
+  margin: 0 0 1rem;
+  color: #020617;
+}
+
+.legal-prose .legal-absolute-box p {
+  margin: 0;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  color: #111827;
+}
+
+.legal-prose h3 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin: 2rem 0 0.75rem;
+  color: #0f172a;
+}
+
+.legal-prose p {
+  margin: 0 0 1rem;
+  color: #374151;
+}
+
+.legal-prose .legal-copy-footer {
+  margin-top: 5rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid #e5e7eb;
+  font-size: 0.875rem;
+  color: #9ca3af;
+}
+
+/* Privacy page variant */
+.legal-prose.legal-prose--privacy {
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+.legal-prose.legal-prose--privacy h1 {
+  font-weight: 900;
+  letter-spacing: 0.2em;
+  padding-bottom: 1rem;
+  margin-bottom: 2.5rem;
+  border-bottom: 8px solid #000000;
+}
+
+.legal-prose.legal-prose--privacy h3 {
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.legal-prose.legal-prose--privacy p {
+  font-size: 0.98rem;
+}
+
+/* Refund framed layout */
+.legal-refund-frame {
+  max-width: 56rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 2.5rem 2rem 3rem;
+  border: 8px solid #000000;
+  background: #ffffff;
+}
+
+.legal-refund-frame h1 {
+  font-size: 3rem;
+  line-height: 1.1;
+  font-weight: 900;
+  text-transform: uppercase;
+  margin: 0 0 2rem;
+  text-decoration: underline;
+  text-decoration-color: #facc15;
+  text-decoration-thickness: 4px;
+  text-underline-offset: 6px;
+  color: #020617;
+}
+
+.legal-refund-highlight {
+  margin: 0 0 2.5rem;
+  padding: 1.5rem;
+  background: #f3f4f6;
+  font-style: italic;
+}
+
+.legal-refund-highlight h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin: 0 0 0.75rem;
+  font-style: normal;
+  color: #020617;
+}
+
+.legal-refund-highlight p {
+  margin: 0;
+  color: #374151;
+}
+
+.legal-refund-frame h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin: 2rem 0 0.65rem;
+  color: #0f172a;
+}
+
+.legal-refund-frame ul {
+  margin: 0 0 1rem;
+  padding-left: 1.25rem;
+  color: #374151;
+}
+
+.legal-refund-frame li {
+  margin-bottom: 0.35rem;
+}
+
+.legal-refund-frame p {
+  margin: 0 0 1rem;
+  color: #374151;
+  line-height: 1.7;
+}
+
+.legal-refund-frame .legal-mail {
+  font-weight: 700;
+  text-decoration: underline;
+}
+
