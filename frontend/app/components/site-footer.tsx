@@ -2,25 +2,30 @@
 export function SiteFooter() {
   return (
     <div className="footer" role="contentinfo" aria-label="Site footer">
-      <div className="footer-inner">
-        <span className="footer-brand">
-          Room P11, Flat 2C, 2/F, Hung To Ctr., 94-96 How Ming St., Kwun Tong, Kowloon, HK
-        </span>
-        <a className="footer-meta footer-link" href="mailto:support@seekapi.ai">
-          support@seekapi.ai
-        </a>
-        <div className="footer-links">
-          <a className="footer-meta footer-link" href="/blog">
-            Network Insights
-          </a>
-          <a className="footer-meta footer-link" href="/terms">
+      <div className="footer-inner footer-three-col">
+        <div className="footer-col footer-col-address">
+          <p className="footer-address">
+            SeekAPI International Limited · Room P11, Flat 2C, 2/F, Hung To Ctr., 94-96 How Ming
+            St., Kwun Tong, Kowloon, Hong Kong
+          </p>
+        </div>
+        <nav className="footer-col footer-col-links" aria-label="Legal and blog">
+          <a className="footer-link-min" href="/terms">
             Terms
           </a>
-          <a className="footer-meta footer-link" href="/refund">
+          <a className="footer-link-min" href="/privacy">
+            Privacy
+          </a>
+          <a className="footer-link-min" href="/refund">
             Refund
           </a>
-          <a className="footer-meta footer-link" href="/privacy">
-            Privacy
+          <a className="footer-link-min" href="/blog">
+            Blog
+          </a>
+        </nav>
+        <div className="footer-col footer-col-contact">
+          <a className="footer-link-min footer-contact" href="mailto:support@seekapi.ai">
+            support@seekapi.ai
           </a>
         </div>
       </div>

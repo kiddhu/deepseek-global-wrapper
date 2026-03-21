@@ -101,7 +101,8 @@ export function getAllPosts(): BlogPost[] {
         title: meta.title || slug,
         date: meta.date || "",
         lang: meta.lang || "en",
-        description: body.slice(0, 180).replace(/\n/g, " "),
+        description:
+          (meta.description && meta.description.trim()) || body.slice(0, 180).replace(/\n/g, " "),
         content: body,
       };
     })
@@ -122,7 +123,8 @@ export function getPostBySlug(slug: string): BlogPost | null {
     title: meta.title || safeSlug,
     date: meta.date || "",
     lang: meta.lang || "en",
-    description: body.slice(0, 180).replace(/\n/g, " "),
+    description:
+      (meta.description && meta.description.trim()) || body.slice(0, 180).replace(/\n/g, " "),
     content: body,
   };
 }

@@ -1,6 +1,16 @@
+import type { Metadata } from "next";
+import { SiteFooter } from "../components/site-footer";
+import { SiteHeader } from "../components/site-header";
+
+export const metadata: Metadata = {
+  title: "Use Cases | SeekAPI.ai",
+  description: "Deployment patterns for support, marketing, and engineering automation.",
+};
+
 export default function UseCasesPage() {
   return (
     <div className="page-shell">
+      <SiteHeader />
       <main className="page-content">
         <div className="container">
           <p className="hero-eyebrow">USE CASES</p>
@@ -33,15 +43,7 @@ export default function UseCasesPage() {
           </section>
         </div>
       </main>
-      <div className="footer" role="contentinfo" aria-label="Site footer">
-        <div className="footer-inner">
-          <span className="footer-brand">
-            Room P11, Flat 2C, 2/F, Hung To Ctr., 94-96 How Ming St., Kwun Tong, Kowloon, HK
-          </span>
-          <span className="footer-meta">support@seekapi.ai</span>
-          <span className="footer-meta">© 2026 SeekAPI.ai | AION: The Era of the One.</span>
-        </div>
-      </div>
+      <SiteFooter />
     </div>
   );
 }
