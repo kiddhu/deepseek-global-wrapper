@@ -61,6 +61,14 @@ export default function TermsPage() {
             subject to the exclusive jurisdiction of the courts of Hong Kong.
           </p>
 
+          <h3>5. Fair Use &amp; Anti-Abuse</h3>
+          <p>
+            Strictly prohibited: API reselling, bulk proxying, and systematic stress-testing without
+            prior written authorization. SeekAPI Technology Limited reserves the right to suspend or
+            terminate accounts that exhibit abnormal concurrent usage patterns, quota evasion, or
+            other conduct that threatens platform stability or violates applicable law.
+          </p>
+
           <p className="legal-copy-footer">
             Copyright © 2026 SeekAPI Technology Limited. All rights reserved.
           </p>

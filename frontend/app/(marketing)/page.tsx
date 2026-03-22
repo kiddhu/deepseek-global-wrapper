@@ -36,12 +36,20 @@ function convertToSeekApi(code: string) {
     .replace(/baseURL\s*:\s*["'][^"']+["']/g, 'baseURL: "https://api.seekapi.ai/v1"');
 }
 
+const DASH_LOGIN_UTM = "https://dash.seekapi.ai/login?utm_source=main_site";
+
 export default function HomePage() {
-  const [costScale, setCostScale] = useState(100);
+  /** Monthly token volume in millions (slider) */
+  const [tokensM, setTokensM] = useState(200);
   const [lang, setLang] = useState<"python" | "node">("python");
   const [inputCode, setInputCode] = useState(PYTHON_SAMPLE);
-  const openAIExpense = useMemo(() => Math.round(20 * costScale), [costScale]);
-  const seekAPIExpense = useMemo(() => Math.round(2 * costScale), [costScale]);
+  const openAIExpense = useMemo(() => Math.round(tokensM * 10), [tokensM]);
+  const seekAPIExpense = useMemo(() => {
+    const base = 20;
+    const included = 80;
+    const overM = Math.max(0, tokensM - included);
+    return Number((base + overM * 0.14).toFixed(2));
+  }, [tokensM]);
   const transformedCode = useMemo(() => convertToSeekApi(inputCode), [inputCode]);
 
   return (
@@ -57,27 +65,32 @@ export default function HomePage() {
             <p className="hero-subtitle">100% OpenAI Compatible. Switch in 30 seconds.</p>
 
             <div className="hero-cost-panel" aria-label="Monthly expense comparison">
+              <p className="hero-cost-model-hint">
+                Model: <strong>Growth</strong> — $20/mo includes <strong>80M</strong> tokens, then{" "}
+                <strong>$0.14</strong>/1M. OpenAI side ≈ <strong>$10</strong>/1M blended benchmark.
+              </p>
               <div className="hero-cost-row">
                 <div className="hero-cost-col">
-                  <span className="hero-cost-label">OpenAI Expense</span>
+                  <span className="hero-cost-label">OpenAI-style spend</span>
                   <span className="hero-cost-amount">${openAIExpense.toLocaleString()}</span>
                 </div>
                 <div className="hero-cost-col hero-cost-col--seek">
-                  <span className="hero-cost-label">SeekAPI Expense</span>
+                  <span className="hero-cost-label">SeekAPI compute bank</span>
                   <span className="hero-cost-amount">${seekAPIExpense.toLocaleString()}</span>
                 </div>
               </div>
               <input
                 type="range"
-                min={1}
-                max={100}
-                value={costScale}
-                onChange={(e) => setCostScale(Number(e.target.value))}
+                min={10}
+                max={500}
+                value={tokensM}
+                onChange={(e) => setTokensM(Number(e.target.value))}
                 className="range-slider hero-cost-slider"
-                aria-label="Adjust comparable monthly spend scenario"
+                aria-label="Monthly tokens in millions"
               />
+              <p className="hero-cost-slider-label">{tokensM}M tokens / month</p>
               <p className="hero-capital-tagline">
-                Stop Overpaying. Redirect your capital to growth.
+                Dollar-cost average your inference. Stop overpaying — redirect capital to growth.
               </p>
             </div>
 
@@ -88,14 +101,14 @@ export default function HomePage() {
             </div>
 
             <div className="hero-actions">
-              <a href="https://dash.seekapi.ai/login" className="button-primary">
+              <a href={DASH_LOGIN_UTM} className="button-primary">
                 Get Started
               </a>
-              <a href="https://dash.seekapi.ai/login" className="button-ghost">
+              <a href={DASH_LOGIN_UTM} className="button-ghost">
                 Login
               </a>
             </div>
-            <a href="https://dash.seekapi.ai/login" className="credit-pill">
+            <a href={DASH_LOGIN_UTM} className="credit-pill">
               $0.50 Free Credit - No Credit Card Required
             </a>
             <p className="hero-subtitle" style={{ marginTop: "-0.5rem", marginBottom: "0.75rem" }}>
@@ -107,8 +120,8 @@ export default function HomePage() {
             <article className="card">
               <h2 className="card-title">Real-time Arbitrage Monitor</h2>
               <p className="card-body">
-                Price: OpenAI <strong>($20.00)</strong> vs SeekAPI <strong>($2.00)</strong> / 1M
-                tokens
+                Growth plan: <strong>$20</strong>/mo + <strong>$0.14</strong>/1M beyond 80M included
+                — vs typical OpenAI-class <strong>~$10</strong>/1M benchmark.
               </p>
               <div className="status-bars">
                 <span style={{ width: "22%" }} />
