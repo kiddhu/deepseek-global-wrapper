@@ -66,7 +66,7 @@ export function PricingBody() {
     <>
       <div className="pricing-float-guarantee" role="status">
         <span className="pricing-float-guarantee-inner">
-          7-Day Money Back Guarantee for Unused Balance
+          7-Day Risk-Free — Unused balance fully refundable
         </span>
       </div>
 
@@ -78,8 +78,11 @@ export function PricingBody() {
             Subscription includes a token pool, rollover windows, and production-grade RPM walls.
             Top up anytime with Credit Boosters — no extra subscription.
           </p>
+          <p className="pricing-fomo-line">
+            Early pricing — rates may increase as compute demand grows.
+          </p>
 
-          <section className="pricing-grid" aria-label="Pricing tiers V4.1">
+          <section className="pricing-grid" aria-label="Pricing tiers V4.3">
             <article className="pricing-card">
               <p className="pricing-tier-tag">Lead magnet</p>
               <h2 className="pricing-card-title">Explorer</h2>
@@ -100,7 +103,7 @@ export function PricingBody() {
               <PaymentMethodStrip />
             </article>
 
-            <article className="pricing-card pricing-card--best">
+            <article className="pricing-card pricing-card--best pricing-card--growth-lift">
               <div className="pricing-ribbon" aria-hidden="true">
                 Core savings
               </div>
@@ -110,6 +113,19 @@ export function PricingBody() {
                 <span className="pricing-price-main">$20</span>
                 <span className="pricing-price-unit">/ month</span>
               </p>
+              <p className="pricing-growth-anchor">Most developers start here.</p>
+              <div className="pricing-compare-block" aria-label="OpenAI equivalent savings">
+                <p className="pricing-compare-line">
+                  Equivalent OpenAI cost: <strong className="pricing-compare-strong">$160</strong>
+                </p>
+                <p className="pricing-compare-line">
+                  You pay: <strong className="pricing-compare-strong">$20</strong>
+                </p>
+                <p className="pricing-compare-savings-line">
+                  → SAVE <strong className="pricing-savings-emphasis">87.5%</strong> (
+                  <strong className="pricing-savings-emphasis">$140 SAVED</strong>)
+                </p>
+              </div>
               <ul className="pricing-card-list">
                 <li>
                   <strong>80M tokens</strong> included per billing cycle
@@ -126,7 +142,7 @@ export function PricingBody() {
               </ul>
               <ClockRolloverTip>Your compute balance remains valid for 60 days.</ClockRolloverTip>
               <a href={proLink} className="button-primary pricing-card-cta">
-                Open Growth plan
+                Start Saving $140/month
               </a>
               <PaymentMethodStrip />
             </article>
@@ -134,6 +150,9 @@ export function PricingBody() {
             <article className="pricing-card">
               <p className="pricing-tier-tag">High throughput</p>
               <h2 className="pricing-card-title">Scale</h2>
+              <p className="pricing-scale-hook">
+                For teams &amp; high-volume apps. Maximum savings tier.
+              </p>
               <p className="pricing-card-price">
                 <span className="pricing-price-main">$99</span>
                 <span className="pricing-price-unit">/ month</span>
@@ -156,7 +175,7 @@ export function PricingBody() {
                 Included compute rolls for up to 90 days on Scale.
               </ClockRolloverTip>
               <a href={enterpriseLink} className="button-ghost pricing-card-cta">
-                Open Scale plan
+                Get Maximum Savings
               </a>
               <PaymentMethodStrip />
             </article>
@@ -173,16 +192,20 @@ export function PricingBody() {
               <article className="pricing-booster-card">
                 <h3 className="pricing-booster-name">Lite Boost</h3>
                 <p className="pricing-booster-deal">
-                  <strong>$50</strong> → <strong>250M</strong> tokens
+                  Pay <strong>$50</strong> → bank <strong>250M tokens</strong> of runway at bulk
+                  rates.
                 </p>
                 <a href={boostLiteLink} className="button-ghost pricing-booster-cta">
                   Buy Lite Boost
                 </a>
               </article>
-              <article className="pricing-booster-card">
+              <article className="pricing-booster-card pricing-booster-card--pro">
+                <span className="pricing-bonus-badge" aria-label="10 percent bonus">
+                  10% BONUS
+                </span>
                 <h3 className="pricing-booster-name">Pro Boost</h3>
                 <p className="pricing-booster-deal">
-                  <strong>$100</strong> → <strong>550M</strong> tokens
+                  Pay <strong>$100</strong> → Get <strong>$110</strong> compute value.
                 </p>
                 <a href={boostProLink} className="button-primary pricing-booster-cta">
                   Buy Pro Boost
